@@ -1,6 +1,6 @@
 # Build Credit
 
-A plain-language, multilingual tool that helps newcomers to the United States understand and build their credit — starting from wherever they actually are, whether that's no credit history at all or an existing file they want to improve.
+A plain-language, multilingual tool that helps newcomers to the United States understand and build their credit, starting from wherever they actually are, whether that's no credit history at all or an existing file they want to improve.
 
 **Live demo:** _(add your GitHub Pages link here once enabled)_
 
