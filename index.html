@@ -1,0 +1,1569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Build Credit — Build your credit as a newcomer to the US</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:wght@500;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #22271f;
+    --ink-soft: #52594c;
+    --ink-muted: #838a78;
+    --paper: #f4f2ea;
+    --card: #fffffc;
+    --line: #dcd9c9;
+    --accent: #3d6b4a;
+    --accent-soft: #e3ebe1;
+    --accent-deep: #274a32;
+    --navy: #2d3e3a;
+    --navy-soft: #e5ebe6;
+    --warn: #90621f;
+    --warn-soft: #f1e6cf;
+    --font-fallback: Arial, Helvetica, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    --font-serif: "EB Garamond", Garamond, Georgia, "Times New Roman", serif;
+  }
+  [data-theme="dark"] {
+    --ink: #e6e7de;
+    --ink-soft: #bcc2b1;
+    --ink-muted: #8a9081;
+    --paper: #171a15;
+    --card: #1f231c;
+    --line: #343a2e;
+    --accent: #7fb08d;
+    --accent-soft: #212c22;
+    --accent-deep: #a8d0b2;
+    --navy: #9fb0a8;
+    --navy-soft: #232c26;
+    --warn: #d0a35c;
+    --warn-soft: #2c2618;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --ink: #e6e7de;
+      --ink-soft: #bcc2b1;
+      --ink-muted: #8a9081;
+      --paper: #171a15;
+      --card: #1f231c;
+      --line: #343a2e;
+      --accent: #7fb08d;
+      --accent-soft: #212c22;
+      --accent-deep: #a8d0b2;
+      --navy: #9fb0a8;
+      --navy-soft: #232c26;
+      --warn: #d0a35c;
+      --warn-soft: #2c2618;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-fallback);
+    line-height: 1.6;
+  }
+  .wrap {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 2.5rem 1.5rem 5rem;
+  }
+  header.hero {
+    margin-bottom: 2rem;
+  }
+  header.hero .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 1rem;
+  }
+  header.hero .brand-mark { color: var(--accent); flex-shrink: 0; }
+  header.hero .brand-word {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 18px;
+    color: var(--accent-deep);
+    letter-spacing: -0.005em;
+  }
+  header.hero h1 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+  }
+  header.hero p {
+    color: var(--ink-soft);
+    font-size: 15px;
+    margin: 0;
+    max-width: 50ch;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.5rem;
+    margin-bottom: 1.25rem;
+  }
+  .q-label {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0 0 0.7rem;
+    color: var(--ink);
+  }
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 0.75rem 0.9rem;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--ink-soft);
+    background: transparent;
+    transition: border-color 0.15s ease, background 0.15s ease;
+  }
+  .option:hover { border-color: var(--accent); }
+  .option.selected {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    color: var(--ink);
+    font-weight: 600;
+  }
+  .option input { accent-color: var(--accent); }
+  button.primary {
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 0.85rem 1.4rem;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+  }
+  button.primary:hover { background: var(--accent-deep); }
+  button.primary:disabled {
+    background: var(--line);
+    color: var(--ink-muted);
+    cursor: not-allowed;
+  }
+  button.ghost {
+    background: transparent;
+    color: var(--ink-soft);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.6rem 1rem;
+    font-size: 13px;
+    cursor: pointer;
+  }
+  .error-text {
+    color: var(--warn);
+    font-size: 13px;
+    margin-top: 0.5rem;
+  }
+  .hidden { display: none !important; }
+
+  /* Timeline */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: "";
+    position: absolute;
+    left: 10px;
+    top: 6px;
+    bottom: 6px;
+    width: 2px;
+    background: var(--line);
+  }
+  .phase { margin-bottom: 1.75rem; position: relative; }
+  .phase::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: 4px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--paper);
+    border: 2px solid var(--accent);
+  }
+  .phase-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    color: var(--accent);
+    font-weight: 600;
+    margin: 0 0 0.6rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .here-badge {
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 11px;
+    font-weight: 700;
+    background: var(--accent);
+    color: #fff;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .task {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0.65rem 0;
+    border-bottom: 1px solid var(--line);
+  }
+  .task:last-child { border-bottom: none; }
+  .task input[type="checkbox"] {
+    margin-top: 3px;
+    width: 17px;
+    height: 17px;
+    accent-color: var(--accent);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+  .task-text { font-size: 14.5px; color: var(--ink); }
+  .task-text.done { color: var(--ink-muted); text-decoration: line-through; }
+  .task-why { font-size: 13px; color: var(--ink-muted); margin-top: 2px; }
+
+  /* Progress bar */
+  .progress-wrap {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 1.5rem;
+  }
+  .progress-track {
+    flex: 1;
+    height: 8px;
+    border-radius: 4px;
+    background: var(--line);
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: var(--accent);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+  }
+  .progress-label { font-size: 13px; color: var(--ink-soft); white-space: nowrap; }
+
+  /* Simulator */
+  .sim-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .sim-row:last-child { border-bottom: none; }
+  .toggle {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    border-radius: 12px;
+    background: var(--line);
+    cursor: pointer;
+    flex-shrink: 0;
+    border: none;
+    padding: 0;
+  }
+  .toggle.on { background: var(--accent); }
+  .toggle::after {
+    content: "";
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #fff;
+    transition: left 0.15s ease;
+  }
+  .toggle.on::after { left: 21px; }
+  .sim-result {
+    margin-top: 1rem;
+    padding: 1rem;
+    background: var(--accent-soft);
+    border-radius: 10px;
+    text-align: center;
+  }
+  .sim-result .num {
+    font-size: 30px;
+    font-weight: 600;
+    color: var(--accent-deep);
+  }
+  .sim-result .cap {
+    font-size: 12px;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    margin-top: 2px;
+  }
+  svg#simchart { width: 100%; height: 140px; display: block; margin-top: 1rem; }
+
+  .section-title {
+    font-family: var(--font-serif);
+    font-size: 21px;
+    font-weight: 700;
+    letter-spacing: -0.005em;
+    margin: 0 0 0.9rem;
+  }
+  .lang-picker { margin-top: 1.1rem; }
+  .lang-picker-label {
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--ink-muted);
+    font-weight: 600;
+    margin: 0 0 0.5rem;
+  }
+  .lang-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .lang-pill {
+    font-size: 12.5px;
+    padding: 5px 11px;
+    border-radius: 20px;
+    background: var(--navy-soft);
+    color: var(--navy);
+    font-weight: 600;
+    border: 1px solid transparent;
+    cursor: pointer;
+  }
+  .lang-pill:hover { border-color: var(--accent); }
+  .lang-pill.selected {
+    background: var(--accent);
+    color: #fff;
+  }
+  .lang-note {
+    font-size: 12.5px;
+    color: var(--ink-muted);
+    margin: 0.6rem 0 0;
+  }
+  .tabs {
+    display: flex;
+    gap: 4px;
+    margin-bottom: 1.25rem;
+    border-bottom: 1px solid var(--line);
+  }
+  .tab {
+    background: none;
+    border: none;
+    padding: 0.65rem 0.9rem;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--ink-muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+  }
+  .tab.active {
+    color: var(--accent-deep);
+    border-bottom-color: var(--accent);
+  }
+  .product-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1.1rem 1.25rem;
+    margin-bottom: 0.9rem;
+  }
+  .product-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 0.3rem;
+  }
+  .product-title-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .product-icon {
+    color: var(--accent);
+    background: var(--accent-soft);
+    border-radius: 8px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  .product-name { font-size: 15.5px; font-weight: 600; color: var(--ink); }
+  .product-link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-deep);
+  }
+  .product-tag {
+    font-size: 11.5px;
+    padding: 2px 8px;
+    border-radius: 6px;
+    background: var(--accent-soft);
+    color: var(--accent-deep);
+    font-weight: 600;
+    white-space: nowrap;
+  }
+  .product-req { font-size: 13px; color: var(--ink-muted); margin: 0 0 0.7rem; }
+  .pc-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  .pc-col p { margin: 0 0 4px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.03em; }
+  .pc-col.pro p { color: var(--accent-deep); }
+  .pc-col.con p { color: var(--warn); }
+  .pc-col ul { margin: 0; padding-left: 16px; font-size: 13px; color: var(--ink-soft); }
+  .pc-col li { margin-bottom: 3px; }
+  .goal-marker {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 0.5rem;
+    padding: 1rem 1.1rem;
+    background: var(--accent-soft);
+    border-radius: 12px;
+  }
+  .goal-marker::before {
+    content: "";
+    position: absolute;
+    left: -28px;
+    top: -28px;
+    width: 2px;
+    height: 28px;
+    background: var(--line);
+  }
+  .goal-icon { color: var(--accent-deep); flex-shrink: 0; }
+  .goal-label { font-size: 14px; font-weight: 600; color: var(--accent-deep); }
+  .filter-note {
+    font-size: 13px;
+    color: var(--ink-soft);
+    background: var(--navy-soft);
+    padding: 0.7rem 0.9rem;
+    border-radius: 10px;
+    margin-bottom: 1.25rem;
+  }
+  .disclaimer {
+    font-size: 12.5px;
+    font-style: italic;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--line);
+    padding-top: 1rem;
+    margin-top: 2.5rem;
+  }
+  .site-footer {
+    margin-top: 1.5rem;
+    padding-top: 1.1rem;
+  }
+  .footer-links {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    justify-content: center;
+  }
+  .footer-link {
+    background: none;
+    border: none;
+    color: var(--ink-muted);
+    font-size: 12.5px;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 4px;
+  }
+  .footer-link:hover { color: var(--accent-deep); }
+  .footer-dot { color: var(--line); }
+  .footer-panel {
+    margin-top: 0.9rem;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.1rem 1.25rem;
+  }
+  .footer-panel h3 {
+    font-family: var(--font-serif);
+    font-weight: 700;
+    font-size: 15px;
+    margin: 0 0 0.6rem;
+    color: var(--ink);
+  }
+  .footer-panel p {
+    font-size: 12.5px;
+    color: var(--ink-soft);
+    margin: 0 0 0.7rem;
+    line-height: 1.6;
+  }
+  .footer-panel p:last-child { margin-bottom: 0; }
+  html[dir="rtl"] .timeline { padding-left: 0; padding-right: 28px; }
+  html[dir="rtl"] .timeline::before { left: auto; right: 10px; }
+  html[dir="rtl"] .phase::before { left: auto; right: -28px; }
+  html[dir="rtl"] .goal-marker::before { left: auto; right: -28px; }
+  html[dir="rtl"] .task { flex-direction: row-reverse; text-align: right; }
+  html[dir="rtl"] .product-title-row { flex-direction: row-reverse; }
+  html[dir="rtl"] .product-head { flex-direction: row-reverse; }
+  html[dir="rtl"] .sim-row { flex-direction: row-reverse; }
+  html[dir="rtl"] .toggle::after { left: auto; right: 3px; }
+  html[dir="rtl"] .toggle.on::after { right: 21px; }
+  html[dir="rtl"] .disclaimer { font-style: normal; }
+  html[dir="rtl"] .brand-row { flex-direction: row-reverse; }
+  html[dir="rtl"] .footer-panel { text-align: right; }
+  .edu-card { padding: 0; overflow: hidden; }
+  .edu-toggle {
+    width: 100%;
+    background: none;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.1rem 1.25rem;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    cursor: pointer;
+    text-align: left;
+  }
+  .edu-chevron { transition: transform 0.15s ease; color: var(--accent); font-style: normal; }
+  .edu-chevron.open { transform: rotate(180deg); }
+  .edu-body {
+    padding: 0 1.25rem 1.25rem;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .edu-body p { margin: 0 0 0.9rem; }
+  .edu-body p:last-child { margin-bottom: 0; }
+  .edu-body strong { color: var(--ink); }
+  .edu-body a { color: var(--accent-deep); }
+  .top-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 1rem;
+  }
+  .glossary-term {
+    border-bottom: 1px dotted var(--ink-muted);
+    cursor: help;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="hero">
+    <div class="brand-row">
+      <svg class="brand-mark" viewBox="0 0 40 40" width="34" height="34" aria-hidden="true">
+        <circle cx="20" cy="20" r="18" fill="none" stroke="currentColor" stroke-width="2"/>
+        <path d="M12 24 L17 17 L22 21 L28 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="28" cy="12" r="2.4" fill="currentColor"/>
+      </svg>
+      <span class="brand-word">Build Credit</span>
+    </div>
+    <h1>Build your credit, step by step</h1>
+    <p class="hero-sub">A plain-language plan for people who are new to the US financial system. No credit history required to start.</p>
+    <div class="lang-picker">
+      <p class="lang-picker-label">Choose your language</p>
+      <div class="lang-strip" id="langStrip"></div>
+      <p class="lang-note" id="langNote"></p>
+    </div>
+  </header>
+
+  <div class="top-actions">
+    <button class="ghost hidden" id="resetBtn" onclick="resetAll()">Start over</button>
+  </div>
+
+  <!-- EDUCATION -->
+  <div class="card edu-card">
+    <button class="edu-toggle" onclick="toggleEdu()" id="eduToggle">
+      <span>What is a credit score, and why does it matter?</span>
+      <i class="edu-chevron" id="eduChevron">&#9662;</i>
+    </button>
+    <div id="eduBody" class="edu-body hidden">
+      <p><strong>What it is.</strong> A credit score is a number, usually between 300 and 850, that estimates how likely you are to repay borrowed money on time. Lenders, landlords, and sometimes employers use it to decide whether to approve you and what interest rate or deposit to offer.</p>
+      <p><strong>Why it matters here.</strong> A landlord may check it before renting to you. A car loan or mortgage rate can shift by thousands of dollars depending on your score. Some utility and cell phone providers waive deposits for people with good scores. The US is a loan-driven system, so this number follows you into many everyday decisions.</p>
+      <p><strong>The three bureaus.</strong> Three companies, Equifax, Experian, and TransUnion, each keep their own record of your credit activity and calculate their own version of your score. They do not always agree, since lenders don't all report to all three. This is why your score can look slightly different depending on where you check it.</p>
+      <p><strong>Where to check it for free.</strong> <a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">AnnualCreditReport.com</a> is the only site required by federal law to give you free reports from all three bureaus. Many banks and credit cards also show a free score estimate in their app once you have an account.</p>
+      <p><strong>What moves it most.</strong> Paying on time matters most, followed by how much of your available credit you're using, then the length of your credit history, the mix of account types you have, and how often you apply for new credit.</p>
+    </div>
+  </div>
+
+  <!-- INTAKE -->
+  <div id="intake">
+    <div class="card">
+      <p class="q-label">1. Do you have a Social Security Number or ITIN?</p>
+      <div class="options" data-q="ssn">
+        <label class="option"><input type="radio" name="ssn" value="yes"> I have one</label>
+        <label class="option"><input type="radio" name="ssn" value="no"> Not yet</label>
+        <label class="option"><input type="radio" name="ssn" value="unsure"> Not sure what this is</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="q-label">2. Do you currently have any US credit history?</p>
+      <div class="options" data-q="history">
+        <label class="option"><input type="radio" name="history" value="none"> None yet</label>
+        <label class="option"><input type="radio" name="history" value="some"> A little (a card or loan for under a year)</label>
+        <label class="option"><input type="radio" name="history" value="established"> Some, but I want to improve it</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="q-label">3. Do you have a US bank account?</p>
+      <div class="options" data-q="bank">
+        <label class="option"><input type="radio" name="bank" value="yes"> Yes</label>
+        <label class="option"><input type="radio" name="bank" value="no"> Not yet</label>
+      </div>
+    </div>
+
+    <div class="card">
+      <p class="q-label">4. What's your main goal in the next 1-2 years?</p>
+      <div class="options" data-q="goal">
+        <label class="option"><input type="radio" name="goal" value="rent"> Rent an apartment</label>
+        <label class="option"><input type="radio" name="goal" value="car"> Buy a car</label>
+        <label class="option"><input type="radio" name="goal" value="house"> Work toward buying a house</label>
+        <label class="option"><input type="radio" name="goal" value="general"> Just build good credit generally</label>
+      </div>
+    </div>
+
+    <button class="primary" id="startBtn" onclick="buildPlan()">See my plan</button>
+    <p class="error-text hidden" id="intakeError">Answer all four questions to continue.</p>
+  </div>
+
+  <!-- PLAN -->
+  <div id="planView" class="hidden">
+    <h2 class="section-title">Your plan</h2>
+    <div class="progress-wrap">
+      <div class="progress-track"><div class="progress-fill" id="progressFill" style="width:0%"></div></div>
+      <span class="progress-label" id="progressLabel">0 of 0 done</span>
+    </div>
+    <div class="timeline" id="timelineOut"></div>
+
+    <h2 class="section-title" style="margin-top:2.5rem;">See how habits affect your score</h2>
+    <div class="card">
+      <div class="sim-row">
+        <span>Pay every bill on time</span>
+        <button class="toggle on" id="tog-ontime" onclick="toggleSim('ontime')"></button>
+      </div>
+      <div class="sim-row">
+        <span>Keep card balance under 30% of your limit</span>
+        <button class="toggle on" id="tog-util" onclick="toggleSim('util')"></button>
+      </div>
+      <div class="sim-row">
+        <span>Keep your oldest account open</span>
+        <button class="toggle on" id="tog-age" onclick="toggleSim('age')"></button>
+      </div>
+      <svg id="simchart" viewBox="0 0 560 140" role="img" aria-label="Estimated credit score trend over 12 months"></svg>
+      <div class="sim-result">
+        <div class="num" id="simScore">690</div>
+        <div class="cap">Estimated score after 12 months</div>
+      </div>
+    </div>
+
+    <h2 class="section-title" style="margin-top:2.5rem;">Banks and cards to consider</h2>
+    <div class="tabs">
+      <button class="tab active" id="tab-banks" onclick="switchTab('banks')">Banks</button>
+      <button class="tab" id="tab-cards" onclick="switchTab('cards')">Credit cards</button>
+    </div>
+    <div id="filterNote" class="filter-note"></div>
+    <div id="banksOut"></div>
+    <div id="cardsOut" class="hidden"></div>
+
+    <p class="disclaimer">This is a simplified, educational estimate, not a real credit score or financial advice. Actual scoring models weigh many more factors, and card and bank terms change often, always confirm current details with the issuer. For decisions about loans or major purchases, talk to a bank or a nonprofit credit counselor.</p>
+  </div>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <button class="footer-link" onclick="toggleFooterPanel('privacy')" id="privacyToggle">Privacy</button>
+      <span class="footer-dot">&middot;</span>
+      <button class="footer-link" onclick="toggleFooterPanel('accessibility')" id="a11yToggle">Accessibility</button>
+    </div>
+    <div id="privacyPanel" class="footer-panel hidden">
+      <h3 id="privacyHeading">Privacy</h3>
+      <p id="privacyP1"></p>
+      <p id="privacyP2"></p>
+      <p id="privacyP3"></p>
+    </div>
+    <div id="accessibilityPanel" class="footer-panel hidden">
+      <h3 id="a11yHeading">Accessibility</h3>
+      <p id="a11yP1"></p>
+      <p id="a11yP2"></p>
+      <p id="a11yP3"></p>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+const LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'es', label: 'Español' },
+  { code: 'fa', label: 'فارسی' },
+  { code: 'ar', label: 'العربية' },
+  { code: 'uk', label: 'Українська' },
+  { code: 'so', label: 'Soomaali' }
+];
+const RTL_LANGS = ['fa', 'ar'];
+let selectedLang = 'en';
+
+const I18N = {
+en: {
+  langNote: '',
+  eduTitle: 'What is a credit score, and why does it matter?',
+  eduBody: [
+    ['What it is.', 'A credit score is a number, usually between 300 and 850, that estimates how likely you are to repay borrowed money on time. Lenders, landlords, and sometimes employers use it to decide whether to approve you and what interest rate or deposit to offer.'],
+    ['Why it matters here.', 'A landlord may check it before renting to you. A car loan or mortgage rate can shift by thousands of dollars depending on your score. Some utility and cell phone providers waive deposits for people with good scores. The US is a loan-driven system, so this number follows you into many everyday decisions.'],
+    ['The three bureaus.', 'Three companies, Equifax, Experian, and TransUnion, each keep their own record of your credit activity and calculate their own version of your score. They do not always agree, since lenders don\'t all report to all three. This is why your score can look slightly different depending on where you check it.'],
+    ['Where to check it for free.', 'AnnualCreditReport.com is the only site required by federal law to give you free reports from all three bureaus. Many banks and credit cards also show a free score estimate in their app once you have an account.'],
+    ['What moves it most.', 'Paying on time matters most, followed by how much of your available credit you\'re using, then the length of your credit history, the mix of account types you have, and how often you apply for new credit.']
+  ],
+  eduLinkText: 'AnnualCreditReport.com',
+  q1: 'Do you have a Social Security Number or ITIN?', q1a: 'I have one', q1b: 'Not yet', q1c: 'Not sure what this is',
+  q2: 'Do you currently have any US credit history?', q2a: 'None yet', q2b: 'A little (a card or loan for under a year)', q2c: 'Some, but I want to improve it',
+  q3: 'Do you have a US bank account?', q3a: 'Yes', q3b: 'Not yet',
+  q4: 'What\'s your main goal in the next 1-2 years?', q4a: 'Rent an apartment', q4b: 'Buy a car', q4c: 'Work toward buying a house', q4d: 'Just build good credit generally',
+  startBtn: 'See my plan', intakeError: 'Answer all four questions to continue.',
+  planTitle: 'Your plan', progressDone: 'done', ofWord: 'of',
+  simTitle: 'See how habits affect your score',
+  simOntime: 'Pay every bill on time', simUtil: 'Keep card balance under 30% of your limit', simAge: 'Keep your oldest account open',
+  simCaption: 'Estimated score after 12 months',
+  productsTitle: 'Banks and cards to consider', tabBanks: 'Banks', tabCards: 'Credit cards',
+  filterHas: 'Based on your answers, options that need an ITIN specifically are less relevant to you, since you already have an SSN.',
+  filterNone: 'Based on your answers, we are highlighting options that do not require an SSN.',
+  filterUnknown: 'Complete the questions above for recommendations tailored to your situation.',
+  visitSite: 'Visit official site',
+  prosLabel: 'Pros', consLabel: 'Cons',
+  disclaimer: 'This is a simplified, educational estimate, not a real credit score or financial advice. Actual scoring models weigh many more factors, and card and bank terms change often, always confirm current details with the issuer. For decisions about loans or major purchases, talk to a bank or a nonprofit credit counselor.',
+  startOver: 'Start over',
+  heroTitle: 'Build your credit, step by step',
+  heroSub: 'A plain-language plan for people who are new to the US financial system. No credit history required to start.',
+  langPickerLabel: 'Choose your language',
+  goalCar: 'On your way to a car loan you understand',
+  goalHouse: 'On your way to a mortgage-ready score',
+  goalRent: 'On your way to renting with confidence',
+  goalGeneral: 'On your way to strong, steady credit',
+  youAreHere: 'You are here', footerPrivacy: 'Privacy', footerA11y: 'Accessibility',
+  privacyHeading: 'Privacy', a11yHeading: 'Accessibility',
+  privacyP1: 'This app does not send your answers or progress to any server. Everything you enter, your intake answers, checked tasks, and language choice, is stored only in your own browser using local storage, on your own device. Nothing is collected, tracked, or shared with anyone, including the people who built this tool.',
+  privacyP2: 'Clearing your browser data, using a different browser, or using private/incognito mode will remove this saved information. There is no account, login, or way for anyone else to see your answers.',
+  privacyP3: 'Links to outside banks and card issuers leave this app entirely. Once you visit their site, their own privacy policy applies, not this one.',
+  a11yP1: 'This app is built with semantic HTML, visible focus states, and labeled form controls so it can be used with a keyboard and with screen readers. Text and background colors are chosen to meet standard contrast guidelines in both light and dark modes.',
+  a11yP2: 'Arabic and Persian display in full right-to-left layout, not just mirrored text. Font sizes use relative units so the page respects your browser\'s or device\'s text-size settings.',
+  a11yP3: 'This is a prototype and has not yet had a full accessibility audit by a specialist or by people who use assistive technology daily. If something is hard to use, that is useful to know and worth fixing.',
+  tasks: {
+    itin: { text: 'Look into getting an ITIN (Individual Taxpayer Identification Number) if you do not qualify for a Social Security Number (SSN)', why: 'You need one or the other to open most bank accounts and credit products.' },
+    openBank: { text: 'Open a checking and savings account at a bank or credit union', why: 'This is the foundation everything else builds on, and many banks have accounts made for newcomers.' },
+    securedCard: { text: 'Apply for a secured credit card', why: 'You put down a deposit as your limit, so approval does not depend on prior US credit history.' },
+    autopay: { text: 'Set up autopay for at least the minimum payment', why: 'Payment history is the single biggest factor in your credit score. Missing a payment is the most damaging thing you can do.' },
+    phase1: 'Months 1-2: foundation',
+    smallPurchases: { text: 'Use the secured card for small, regular purchases (like gas or groceries)', why: 'Regular activity shows lenders you use credit responsibly, not just that you have a card.' },
+    payFull: { text: 'Pay off the full balance each month, not just the minimum', why: 'This avoids interest charges and keeps your credit utilization low, which helps your credit score.' },
+    checkReport: { text: 'Check your credit report for free at AnnualCreditReport.com', why: 'This is the only site required by law to give you free reports from all three credit bureaus, so you can catch errors early.' },
+    authorizedUser: { text: 'Consider becoming an authorized user on a trusted family member\'s card', why: 'Their positive history can start showing up on your credit report too, if the card issuer reports authorized users.' },
+    phase2: 'Months 3-6: build the habit',
+    upgradeCard: { text: 'Ask your card issuer about upgrading from secured to unsecured', why: 'After 6-12 months of on-time payments, many issuers will refund your deposit and raise your limit.' },
+    secondAccount: { text: 'Consider a second account, like a credit-builder loan or a store card', why: 'A mix of account types can help your credit score, but only add one at a time and space it out.' },
+    carRates: { text: 'Research typical interest rates (APR) for your credit score range before shopping for a car loan', why: 'Knowing the range means a dealer cannot quietly offer you a worse rate than you qualify for.' },
+    mortgageRange: { text: 'Learn what credit score range mortgage lenders typically look for', why: 'Requirements vary, but knowing the target now gives you a real number to work toward.' },
+    rentReporting: { text: 'Ask landlords if they report rent payments to credit bureaus, or use a rent-reporting service', why: 'Rent is often your biggest monthly payment. If it is not reported, it is not helping your credit score.' },
+    phase3: 'Months 6-12: grow it',
+    utilization: { text: 'Keep total credit use under 30% of your limits across all cards', why: 'This ratio, called credit utilization, is the second biggest factor after payment history.' },
+    avoidApps: { text: 'Avoid applying for several new accounts in a short period', why: 'Each application can cause a small, temporary dip in your credit score.' },
+    yearlyCheck: { text: 'Review your credit report once a year for errors or signs of fraud', why: 'Mistakes happen, and catching them early is much easier than fixing them later.' },
+    phase4: 'Ongoing'
+  },
+  products: {
+    bankMajor: { name: 'Chase, Bank of America, Wells Fargo, or Citibank', tag: 'Have an ITIN', req: 'ITIN plus a passport or consular ID. In-person branch visit required.', pros: ['Large branch and ATM networks', 'Full banking app once open', 'Clear path to a credit card with the same bank later'], cons: ['Usually cannot apply online with an ITIN, branch visit required', 'Monthly fees unless you meet a waiver requirement'] },
+    bankNeo: { name: 'Chime, Current, or Varo', tag: 'Have an SSN', req: 'Requires a Social Security Number, not an ITIN.', pros: ['No monthly fees', 'Account open in about 10 business days', 'Simple mobile-first app'], cons: ['Not an option without an SSN', 'No physical branches if you prefer in-person help'] },
+    bankCU: { name: 'A local credit union', tag: 'Flexible either way', req: 'Often accepts a consular ID like a Matrícula Consular alongside ITIN or SSN.', pros: ['Lower fees than big banks', 'More personalized, often multilingual service', 'Sometimes more flexible on documentation'], cons: ['Smaller ATM network', 'Fewer digital tools than a large bank'] },
+    cardCapOne: { name: 'Capital One Quicksilver Secured', tag: 'ITIN accepted', req: 'Needs an ITIN and a refundable deposit (as low as $200).', pros: ['1.5% cash back on purchases, no annual fee', 'Reports to all three credit bureaus', 'Automatic review to upgrade around 6 months in'], cons: ['Requires cash upfront for the deposit', 'Approval still depends on income verification'] },
+    cardOpenSky: { name: 'OpenSky Secured Visa', tag: 'No SSN or ITIN needed', req: 'Valid ID only, no SSN or ITIN required at all.', pros: ['One of the only cards that needs no SSN or ITIN', 'Reports to all three bureaus', 'Good option in your very first weeks'], cons: ['$35 annual fee, higher than most competitors', 'APR around 20%, so paying the balance in full matters a lot'] },
+    cardFirstcard: { name: 'Firstcard', tag: 'No SSN or ITIN needed', req: 'Uses passport and visa documents in place of SSN or ITIN.', pros: ['Built specifically for people new to US credit', 'No credit history needed to apply', 'Reports to all three bureaus'], cons: ['A newer fintech product, not a traditional bank', 'Less brand recognition than bank-issued cards'] },
+    cardDeserve: { name: 'Deserve (via Nova Credit)', tag: 'Have foreign credit history', req: 'For applicants with existing credit history in India, the UK, Canada, and a few other countries.', pros: ['Can get an unsecured card immediately, no deposit', 'Recognizes credit history you already built abroad'], cons: ['Only works if your home country is supported', 'Not useful if you have no prior credit history anywhere'] }
+  }
+},
+es: {
+  langNote: '',
+  eduTitle: '¿Qué es un puntaje de crédito (credit score) y por qué importa?',
+  eduBody: [
+    ['Qué es.', 'Un puntaje de crédito (credit score) es un número, normalmente entre 300 y 850, que estima qué tan probable es que pagues a tiempo el dinero que pides prestado. Prestamistas, arrendadores y a veces empleadores lo usan para decidir si te aprueban y qué tasa de interés (APR) o depósito ofrecerte.'],
+    ['Por qué importa aquí.', 'Un arrendador puede revisarlo antes de alquilarte una vivienda. Un préstamo de auto o una hipoteca (mortgage) pueden variar por miles de dólares según tu puntaje. Algunas compañías de servicios públicos y celulares eliminan el depósito para personas con buen puntaje. Estados Unidos es un sistema basado en préstamos, así que este número te acompaña en muchas decisiones cotidianas.'],
+    ['Las tres agencias (credit bureaus).', 'Tres empresas, Equifax, Experian y TransUnion, mantienen cada una su propio registro de tu actividad crediticia y calculan su propia versión de tu puntaje. No siempre coinciden, ya que no todos los prestamistas reportan a las tres. Por eso tu puntaje puede verse un poco diferente según dónde lo consultes.'],
+    ['Dónde revisarlo gratis.', 'AnnualCreditReport.com es el único sitio que la ley federal exige que ofrezca reportes gratuitos (credit reports) de las tres agencias. Muchos bancos y tarjetas de crédito también muestran un estimado gratuito del puntaje en su aplicación una vez que tienes cuenta.'],
+    ['Qué lo afecta más.', 'Pagar a tiempo (payment history) es lo más importante, seguido de cuánto de tu crédito disponible estás usando (credit utilization), luego la antigüedad de tu historial, la variedad de cuentas que tienes, y con qué frecuencia solicitas crédito nuevo.']
+  ],
+  eduLinkText: 'AnnualCreditReport.com',
+  q1: '¿Tienes número de Seguro Social (Social Security Number, SSN) o ITIN?', q1a: 'Sí tengo uno', q1b: 'Todavía no', q1c: 'No estoy seguro qué es esto',
+  q2: '¿Tienes historial de crédito (credit history) en Estados Unidos?', q2a: 'Ninguno todavía', q2b: 'Un poco (una tarjeta o préstamo de menos de un año)', q2c: 'Algo, pero quiero mejorarlo',
+  q3: '¿Tienes cuenta bancaria (bank account) en Estados Unidos?', q3a: 'Sí', q3b: 'Todavía no',
+  q4: '¿Cuál es tu meta principal en los próximos 1-2 años?', q4a: 'Alquilar un apartamento', q4b: 'Comprar un auto', q4c: 'Trabajar para comprar una casa', q4d: 'Simplemente construir buen crédito',
+  startBtn: 'Ver mi plan', intakeError: 'Responde las cuatro preguntas para continuar.',
+  planTitle: 'Tu plan', progressDone: 'completadas', ofWord: 'de',
+  simTitle: 'Mira cómo tus hábitos afectan tu puntaje de crédito (credit score)',
+  simOntime: 'Pagar cada cuenta a tiempo (on-time payment)', simUtil: 'Mantener el saldo bajo el 30% de tu límite (credit utilization)', simAge: 'Mantener abierta tu cuenta más antigua',
+  simCaption: 'Puntaje estimado (estimated credit score) después de 12 meses',
+  productsTitle: 'Bancos y tarjetas a considerar', tabBanks: 'Bancos', tabCards: 'Tarjetas de crédito (credit cards)',
+  filterHas: 'Según tus respuestas, las opciones que requieren ITIN específicamente son menos relevantes para ti, ya que tienes número de Seguro Social (SSN).',
+  filterNone: 'Según tus respuestas, estamos destacando opciones que no requieren número de Seguro Social (SSN).',
+  filterUnknown: 'Completa las preguntas de arriba para recomendaciones según tu situación.',
+  visitSite: 'Visitar sitio oficial',
+  prosLabel: 'Ventajas', consLabel: 'Desventajas',
+  disclaimer: 'Esto es una estimación educativa simplificada, no un puntaje de crédito (credit score) real ni asesoría financiera. Los modelos reales consideran muchos más factores, y los términos de tarjetas y bancos cambian con frecuencia, siempre confirma los detalles actuales con la entidad. Para decisiones sobre préstamos o compras importantes, habla con un banco o un consejero de crédito sin fines de lucro.',
+  startOver: 'Empezar de nuevo',
+  heroTitle: 'Construye tu crédito, paso a paso',
+  heroSub: 'Un plan en lenguaje sencillo para personas nuevas en el sistema financiero de Estados Unidos. No necesitas historial de crédito para empezar.',
+  langPickerLabel: 'Elige tu idioma',
+  goalCar: 'En camino a un préstamo de auto (car loan) que entiendes bien',
+  goalHouse: 'En camino a un puntaje listo para hipoteca (mortgage)',
+  goalRent: 'En camino a alquilar con confianza',
+  goalGeneral: 'En camino a un crédito sólido y estable',
+  youAreHere: 'Estás aquí', footerPrivacy: 'Privacidad', footerA11y: 'Accesibilidad',
+  privacyHeading: 'Privacidad', a11yHeading: 'Accesibilidad',
+  privacyP1: 'Esta aplicación no envía tus respuestas ni tu progreso a ningún servidor. Todo lo que ingresas, tus respuestas del cuestionario, tareas marcadas y elección de idioma, se guarda únicamente en tu propio navegador usando almacenamiento local, en tu propio dispositivo. Nada se recopila, rastrea ni comparte con nadie, incluidas las personas que crearon esta herramienta.',
+  privacyP2: 'Borrar los datos de tu navegador, usar un navegador diferente, o usar el modo privado/incógnito eliminará esta información guardada. No hay cuenta, inicio de sesión, ni forma de que alguien más vea tus respuestas.',
+  privacyP3: 'Los enlaces a bancos y emisores de tarjetas externos te llevan fuera de esta aplicación por completo. Una vez que visitas su sitio, aplica su propia política de privacidad, no esta.',
+  a11yP1: 'Esta aplicación está construida con HTML semántico, estados de enfoque visibles y controles de formulario etiquetados para poder usarse con teclado y con lectores de pantalla. Los colores de texto y fondo se eligen para cumplir con las pautas estándar de contraste tanto en modo claro como oscuro.',
+  a11yP2: 'El árabe y el persa se muestran en diseño completo de derecha a izquierda, no solo texto reflejado. Los tamaños de texto usan unidades relativas para que la página respete la configuración de tamaño de texto de tu navegador o dispositivo.',
+  a11yP3: 'Esta es una versión prototipo y aún no ha tenido una auditoría completa de accesibilidad por parte de un especialista o de personas que usan tecnología de asistencia a diario. Si algo es difícil de usar, es útil saberlo y vale la pena corregirlo.',
+  tasks: {
+    itin: { text: 'Investiga cómo obtener un ITIN (Individual Taxpayer Identification Number) si no calificas para un número de Seguro Social (SSN)', why: 'Necesitas uno u otro para abrir la mayoría de cuentas bancarias y productos de crédito.' },
+    openBank: { text: 'Abre una cuenta corriente y de ahorros (checking and savings account) en un banco o cooperativa de crédito (credit union)', why: 'Esta es la base sobre la que se construye todo lo demás, y muchos bancos tienen cuentas hechas para recién llegados.' },
+    securedCard: { text: 'Solicita una tarjeta de crédito garantizada (secured credit card)', why: 'Depositas dinero como tu límite, así que la aprobación no depende de historial de crédito previo en Estados Unidos.' },
+    autopay: { text: 'Configura el pago automático (autopay) para al menos el pago mínimo', why: 'El historial de pagos (payment history) es el factor más importante de tu puntaje de crédito. No pagar a tiempo es lo más dañino que puedes hacer.' },
+    phase1: 'Meses 1-2: la base',
+    smallPurchases: { text: 'Usa la tarjeta garantizada para compras pequeñas y regulares (como gasolina o el supermercado)', why: 'La actividad regular muestra a los prestamistas que usas el crédito de forma responsable, no solo que tienes una tarjeta.' },
+    payFull: { text: 'Paga el saldo completo cada mes, no solo el mínimo', why: 'Esto evita cargos por intereses y mantiene bajo tu uso de crédito (credit utilization), lo cual ayuda a tu puntaje.' },
+    checkReport: { text: 'Revisa tu reporte de crédito (credit report) gratis en AnnualCreditReport.com', why: 'Este es el único sitio que la ley exige que dé reportes gratuitos de las tres agencias, así puedes detectar errores a tiempo.' },
+    authorizedUser: { text: 'Considera convertirte en usuario autorizado (authorized user) en la tarjeta de un familiar de confianza', why: 'Su historial positivo también puede empezar a aparecer en tu reporte, si el emisor de la tarjeta reporta usuarios autorizados.' },
+    phase2: 'Meses 3-6: construye el hábito',
+    upgradeCard: { text: 'Pregunta a tu banco sobre mejorar de tarjeta garantizada a no garantizada (unsecured)', why: 'Después de 6-12 meses de pagos a tiempo, muchos emisores devuelven tu depósito y suben tu límite.' },
+    secondAccount: { text: 'Considera una segunda cuenta, como un préstamo para construir crédito (credit-builder loan) o una tarjeta de tienda', why: 'Una mezcla de tipos de cuenta puede ayudar tu puntaje, pero agrega solo una a la vez y espacia el tiempo.' },
+    carRates: { text: 'Investiga las tasas de interés (APR) típicas para tu rango de puntaje antes de buscar un préstamo de auto', why: 'Conocer el rango significa que un vendedor no puede ofrecerte discretamente una tasa peor de la que calificas.' },
+    mortgageRange: { text: 'Aprende qué rango de puntaje buscan típicamente los prestamistas hipotecarios (mortgage lenders)', why: 'Los requisitos varían, pero conocer la meta ahora te da un número real hacia el cual trabajar.' },
+    rentReporting: { text: 'Pregunta a tus arrendadores si reportan pagos de renta a las agencias de crédito, o usa un servicio de reporte de renta (rent-reporting service)', why: 'La renta suele ser tu pago mensual más grande. Si no se reporta, no está ayudando a tu puntaje.' },
+    phase3: 'Meses 6-12: hazlo crecer',
+    utilization: { text: 'Mantén el uso total de crédito bajo el 30% de tus límites en todas las tarjetas', why: 'Esta proporción, llamada utilización de crédito (credit utilization), es el segundo factor más importante después del historial de pagos.' },
+    avoidApps: { text: 'Evita solicitar varias cuentas nuevas en poco tiempo', why: 'Cada solicitud puede causar una pequeña baja temporal en tu puntaje.' },
+    yearlyCheck: { text: 'Revisa tu reporte de crédito una vez al año por errores o señales de fraude', why: 'Los errores pasan, y detectarlos a tiempo es mucho más fácil que corregirlos después.' },
+    phase4: 'Continuo'
+  },
+  products: {
+    bankMajor: { name: 'Chase, Bank of America, Wells Fargo o Citibank', tag: 'Tienes ITIN', req: 'ITIN más pasaporte o identificación consular. Requiere visita en persona a una sucursal.', pros: ['Grandes redes de sucursales y cajeros', 'Aplicación bancaria completa una vez abierta', 'Camino claro hacia una tarjeta de crédito con el mismo banco después'], cons: ['Usualmente no puedes solicitar en línea con ITIN, se requiere visita a sucursal', 'Cuotas mensuales a menos que cumplas un requisito de exención'] },
+    bankNeo: { name: 'Chime, Current o Varo', tag: 'Tienes SSN', req: 'Requiere número de Seguro Social, no ITIN.', pros: ['Sin cuotas mensuales', 'Cuenta abierta en unos 10 días hábiles', 'Aplicación simple, primero móvil'], cons: ['No es opción sin número de Seguro Social', 'Sin sucursales físicas si prefieres ayuda en persona'] },
+    bankCU: { name: 'Una cooperativa de crédito local', tag: 'Flexible en ambos casos', req: 'A menudo acepta una identificación consular como la Matrícula Consular junto con ITIN o SSN.', pros: ['Cuotas más bajas que los bancos grandes', 'Servicio más personalizado, a menudo multilingüe', 'A veces más flexible con la documentación'], cons: ['Red de cajeros más pequeña', 'Menos herramientas digitales que un banco grande'] },
+    cardCapOne: { name: 'Capital One Quicksilver Garantizada', tag: 'Acepta ITIN', req: 'Necesita ITIN y un depósito reembolsable (desde $200).', pros: ['1.5% de reembolso en compras, sin cuota anual', 'Reporta a las tres agencias de crédito', 'Revisión automática para mejorar alrededor de los 6 meses'], cons: ['Requiere efectivo por adelantado para el depósito', 'La aprobación aún depende de verificación de ingresos'] },
+    cardOpenSky: { name: 'OpenSky Secured Visa', tag: 'No necesita SSN ni ITIN', req: 'Solo identificación válida, no se requiere SSN ni ITIN.', pros: ['Una de las pocas tarjetas que no necesita SSN ni ITIN', 'Reporta a las tres agencias', 'Buena opción en tus primeras semanas'], cons: ['Cuota anual de $35, más alta que la mayoría', 'APR alrededor del 20%, así que pagar el saldo completo importa mucho'] },
+    cardFirstcard: { name: 'Firstcard', tag: 'No necesita SSN ni ITIN', req: 'Usa pasaporte y documentos de visa en lugar de SSN o ITIN.', pros: ['Creada específicamente para personas nuevas en el crédito de EE. UU.', 'No necesita historial de crédito para solicitar', 'Reporta a las tres agencias'], cons: ['Un producto fintech más nuevo, no un banco tradicional', 'Menos reconocimiento de marca que tarjetas de bancos'] },
+    cardDeserve: { name: 'Deserve (vía Nova Credit)', tag: 'Tienes historial de crédito extranjero', req: 'Para solicitantes con historial de crédito existente en India, el Reino Unido, Canadá y algunos otros países.', pros: ['Puedes obtener una tarjeta no garantizada de inmediato, sin depósito', 'Reconoce el historial de crédito que ya construiste en el extranjero'], cons: ['Solo funciona si tu país de origen está en la lista', 'No es útil si no tienes historial de crédito previo en ningún lugar'] }
+  }
+},
+fa: {
+  langNote: '',
+  eduTitle: 'امتیاز اعتباری (credit score) چیست و چرا اهمیت دارد؟',
+  eduBody: [
+    ['امتیاز اعتباری چیست.', 'امتیاز اعتباری (credit score) عددی است، معمولاً بین ۳۰۰ تا ۸۵۰، که نشان می‌دهد چقدر احتمال دارد پولی را که قرض گرفته‌اید به‌موقع بازپرداخت کنید. وام‌دهندگان، صاحب‌خانه‌ها و گاهی کارفرمایان از آن برای تصمیم‌گیری درباره تأیید شما و نرخ بهره (APR) یا مبلغ ودیعه استفاده می‌کنند.'],
+    ['چرا اینجا اهمیت دارد.', 'صاحب‌خانه ممکن است پیش از اجاره دادن آن را بررسی کند. نرخ وام خودرو یا وام مسکن (mortgage) می‌تواند بسته به امتیاز شما هزاران دلار تفاوت داشته باشد. برخی شرکت‌های آب و برق و تلفن همراه برای افراد با امتیاز خوب ودیعه را حذف می‌کنند. آمریکا نظامی مبتنی بر وام است، پس این عدد در بسیاری از تصمیم‌های روزمره همراه شماست.'],
+    ['سه دفتر اعتباری (credit bureaus).', 'سه شرکت، اکوییفکس (Equifax)، اکسپرین (Experian) و ترنس‌یونیون (TransUnion)، هرکدام سوابق جداگانه‌ای از فعالیت اعتباری شما نگه می‌دارند و نسخه خودشان از امتیاز را محاسبه می‌کنند. همیشه با هم یکسان نیستند، زیرا همه وام‌دهندگان به هر سه گزارش نمی‌دهند. به همین دلیل امتیاز شما بسته به اینکه کجا آن را بررسی کنید کمی متفاوت به نظر می‌رسد.'],
+    ['کجا رایگان بررسی کنیم.', 'AnnualCreditReport.com تنها سایتی است که طبق قانون فدرال موظف است گزارش اعتباری (credit report) رایگان از هر سه دفتر اعتباری ارائه دهد. بسیاری از بانک‌ها و کارت‌های اعتباری نیز پس از باز کردن حساب، تخمین رایگان امتیاز را در اپلیکیشن خود نشان می‌دهند.'],
+    ['چه چیزی بیشترین تأثیر را دارد.', 'پرداخت به‌موقع (payment history) مهم‌ترین عامل است، سپس میزان استفاده از اعتبار در دسترس (credit utilization)، طول مدت سابقه اعتباری، تنوع نوع حساب‌ها، و تعداد دفعاتی که برای اعتبار جدید درخواست می‌دهید.']
+  ],
+  eduLinkText: 'AnnualCreditReport.com',
+  q1: 'آیا شماره تأمین اجتماعی (Social Security Number, SSN) یا ITIN دارید؟', q1a: 'بله دارم', q1b: 'هنوز نه', q1c: 'مطمئن نیستم این چیست',
+  q2: 'آیا در حال حاضر سابقه اعتباری (credit history) در آمریکا دارید؟', q2a: 'هنوز هیچ', q2b: 'کمی (یک کارت یا وام کمتر از یک سال)', q2c: 'کمی دارم، اما می‌خواهم بهترش کنم',
+  q3: 'آیا حساب بانکی (bank account) در آمریکا دارید؟', q3a: 'بله', q3b: 'هنوز نه',
+  q4: 'هدف اصلی شما در یک تا دو سال آینده چیست؟', q4a: 'اجاره یک آپارتمان', q4b: 'خرید یک خودرو', q4c: 'تلاش برای خرید خانه', q4d: 'فقط ساختن اعتبار خوب به‌طور کلی',
+  startBtn: 'مشاهده برنامه من', intakeError: 'برای ادامه به هر چهار سؤال پاسخ دهید.',
+  planTitle: 'برنامه شما', progressDone: 'انجام‌شده', ofWord: 'از',
+  simTitle: 'ببینید عادت‌ها چگونه بر امتیاز اعتباری (credit score) شما تأثیر می‌گذارند',
+  simOntime: 'پرداخت هر قبض به‌موقع (on-time payment)', simUtil: 'نگه داشتن موجودی کارت زیر ۳۰٪ سقف اعتبار (credit utilization)', simAge: 'باز نگه داشتن قدیمی‌ترین حساب',
+  simCaption: 'امتیاز تخمینی (estimated credit score) پس از ۱۲ ماه',
+  productsTitle: 'بانک‌ها و کارت‌هایی که باید در نظر بگیرید', tabBanks: 'بانک‌ها', tabCards: 'کارت‌های اعتباری (credit cards)',
+  filterHas: 'بر اساس پاسخ‌های شما، گزینه‌هایی که به‌طور خاص به ITIN نیاز دارند برای شما کمتر مرتبط هستند، زیرا شماره تأمین اجتماعی (SSN) دارید.',
+  filterNone: 'بر اساس پاسخ‌های شما، گزینه‌هایی را که نیاز به شماره تأمین اجتماعی (SSN) ندارند برجسته می‌کنیم.',
+  filterUnknown: 'برای پیشنهادهای متناسب با شرایط خود، به سؤالات بالا پاسخ دهید.',
+  visitSite: 'مشاهده سایت رسمی',
+  prosLabel: 'مزایا', consLabel: 'معایب',
+  disclaimer: 'این یک تخمین آموزشی ساده‌شده است، نه امتیاز اعتباری (credit score) واقعی یا مشاوره مالی. مدل‌های واقعی محاسبه امتیاز عوامل بسیار بیشتری را در نظر می‌گیرند، و شرایط کارت و بانک اغلب تغییر می‌کند، همیشه جزئیات فعلی را با مؤسسه صادرکننده تأیید کنید. برای تصمیم‌های مربوط به وام یا خریدهای بزرگ، با یک بانک یا مشاور اعتباری غیرانتفاعی صحبت کنید.',
+  startOver: 'شروع دوباره',
+  heroTitle: 'اعتبار خود را قدم‌به‌قدم بسازید',
+  heroSub: 'برنامه‌ای به زبان ساده برای افرادی که تازه وارد نظام مالی آمریکا شده‌اند. برای شروع نیازی به سابقه اعتباری نیست.',
+  langPickerLabel: 'زبان خود را انتخاب کنید',
+  goalCar: 'در مسیر گرفتن وام خودرویی (car loan) که آن را درک می‌کنید',
+  goalHouse: 'در مسیر رسیدن به امتیازی آماده برای وام مسکن (mortgage)',
+  goalRent: 'در مسیر اجاره کردن با اطمینان',
+  goalGeneral: 'در مسیر ساختن اعتباری قوی و پایدار',
+  youAreHere: 'شما اینجا هستید', footerPrivacy: 'حریم خصوصی', footerA11y: 'دسترس‌پذیری',
+  privacyHeading: 'حریم خصوصی', a11yHeading: 'دسترس‌پذیری',
+  privacyP1: 'این اپلیکیشن پاسخ‌ها یا پیشرفت شما را به هیچ سروری ارسال نمی‌کند. هر چیزی که وارد می‌کنید، پاسخ‌های شما، کارهای علامت‌گذاری‌شده، و انتخاب زبان، فقط در مرورگر خودتان با استفاده از ذخیره‌سازی محلی (local storage)، روی دستگاه خودتان نگه داشته می‌شود. هیچ چیز جمع‌آوری، ردیابی یا با کسی به اشتراک گذاشته نمی‌شود، حتی سازندگان این ابزار.',
+  privacyP2: 'پاک کردن داده‌های مرورگر، استفاده از مرورگر دیگر، یا استفاده از حالت خصوصی/incognito این اطلاعات ذخیره‌شده را حذف می‌کند. هیچ حساب کاربری، ورود، یا راهی برای دیدن پاسخ‌های شما توسط دیگران وجود ندارد.',
+  privacyP3: 'لینک‌های بانک‌ها و صادرکنندگان کارت خارجی شما را کاملاً از این اپلیکیشن خارج می‌کنند. وقتی سایت آن‌ها را بازدید می‌کنید، سیاست حریم خصوصی خودشان اعمال می‌شود، نه این یکی.',
+  a11yP1: 'این اپلیکیشن با HTML معنایی (semantic HTML)، حالت‌های تمرکز قابل مشاهده، و کنترل‌های فرم برچسب‌گذاری‌شده ساخته شده تا بتوان با صفحه‌کلید و صفحه‌خوان‌ها از آن استفاده کرد. رنگ‌های متن و پس‌زمینه طوری انتخاب شده‌اند که با استانداردهای کنتراست هم در حالت روشن و هم تاریک مطابقت داشته باشند.',
+  a11yP2: 'عربی و فارسی به‌صورت کامل با چیدمان راست‌به‌چپ نمایش داده می‌شوند، نه فقط متن آینه‌ای. اندازه متن از واحدهای نسبی استفاده می‌کند تا صفحه با تنظیمات اندازه متن مرورگر یا دستگاه شما هماهنگ باشد.',
+  a11yP3: 'این یک نسخه اولیه (prototype) است و هنوز بررسی کامل دسترس‌پذیری توسط متخصص یا افرادی که روزانه از فناوری کمکی استفاده می‌کنند انجام نشده است. اگر چیزی استفاده‌اش دشوار است، دانستن آن مفید است و ارزش اصلاح کردن دارد.',
+  tasks: {
+    itin: { text: 'اگر واجد شرایط شماره تأمین اجتماعی (SSN) نیستید، درباره گرفتن ITIN (Individual Taxpayer Identification Number) بررسی کنید', why: 'برای باز کردن بیشتر حساب‌های بانکی و محصولات اعتباری به یکی از این دو نیاز دارید.' },
+    openBank: { text: 'یک حساب جاری و پس‌انداز (checking and savings account) در یک بانک یا اتحادیه اعتباری (credit union) باز کنید', why: 'این پایه‌ای است که همه چیز دیگر روی آن ساخته می‌شود، و بسیاری از بانک‌ها حساب‌هایی مخصوص تازه‌واردان دارند.' },
+    securedCard: { text: 'برای یک کارت اعتباری تضمینی (secured credit card) درخواست دهید', why: 'شما مبلغی را به‌عنوان سقف اعتبار خود سپرده می‌کنید، پس تأیید آن به سابقه اعتباری قبلی در آمریکا بستگی ندارد.' },
+    autopay: { text: 'پرداخت خودکار (autopay) را حداقل برای حداقل مبلغ پرداخت تنظیم کنید', why: 'پرداخت به‌موقع (payment history) مهم‌ترین عامل در امتیاز اعتباری شماست. جا انداختن یک پرداخت آسیب‌زننده‌ترین کاری است که می‌توانید انجام دهید.' },
+    phase1: 'ماه‌های ۱ تا ۲: پایه‌گذاری',
+    smallPurchases: { text: 'از کارت تضمینی برای خریدهای کوچک و منظم (مثل بنزین یا خواربار) استفاده کنید', why: 'فعالیت منظم به وام‌دهندگان نشان می‌دهد که شما اعتبار را مسئولانه استفاده می‌کنید، نه فقط اینکه یک کارت دارید.' },
+    payFull: { text: 'هر ماه کل موجودی را پرداخت کنید، نه فقط حداقل مبلغ', why: 'این کار از هزینه‌های بهره جلوگیری می‌کند و میزان استفاده از اعتبار (credit utilization) شما را پایین نگه می‌دارد، که به امتیاز شما کمک می‌کند.' },
+    checkReport: { text: 'گزارش اعتباری (credit report) خود را رایگان در AnnualCreditReport.com بررسی کنید', why: 'این تنها سایتی است که طبق قانون موظف است گزارش رایگان از هر سه دفتر اعتباری بدهد، پس می‌توانید زود خطاها را پیدا کنید.' },
+    authorizedUser: { text: 'به تبدیل شدن به کاربر مجاز (authorized user) روی کارت یکی از اعضای خانواده مورد اعتماد فکر کنید', why: 'سابقه مثبت آن‌ها نیز می‌تواند در گزارش شما ظاهر شود، اگر صادرکننده کارت کاربران مجاز را گزارش کند.' },
+    phase2: 'ماه‌های ۳ تا ۶: عادت را بسازید',
+    upgradeCard: { text: 'از صادرکننده کارت خود درباره ارتقا از تضمینی به غیرتضمینی (unsecured) بپرسید', why: 'پس از ۶ تا ۱۲ ماه پرداخت به‌موقع، بسیاری از صادرکنندگان سپرده شما را برمی‌گردانند و سقف اعتبار را بالا می‌برند.' },
+    secondAccount: { text: 'یک حساب دوم را در نظر بگیرید، مثل وام سازنده اعتبار (credit-builder loan) یا کارت فروشگاهی', why: 'ترکیبی از انواع حساب می‌تواند به امتیاز شما کمک کند، اما فقط یکی را در هر بار اضافه کنید و فاصله بگذارید.' },
+    carRates: { text: 'پیش از خرید وام خودرو، نرخ‌های بهره معمول (APR) برای محدوده امتیاز خود را بررسی کنید', why: 'دانستن این محدوده یعنی فروشنده نمی‌تواند نرخی بدتر از آنچه شایسته آن هستید به شما پیشنهاد دهد.' },
+    mortgageRange: { text: 'بیاموزید وام‌دهندگان مسکن (mortgage lenders) معمولاً چه محدوده امتیازی می‌خواهند', why: 'شرایط متفاوت است، اما دانستن هدف اکنون به شما عددی واقعی برای تلاش می‌دهد.' },
+    rentReporting: { text: 'از صاحب‌خانه‌ها بپرسید آیا پرداخت اجاره را به دفاتر اعتباری گزارش می‌دهند، یا از یک سرویس گزارش اجاره (rent-reporting service) استفاده کنید', why: 'اجاره اغلب بزرگ‌ترین پرداخت ماهانه شماست. اگر گزارش نشود، به امتیاز شما کمک نمی‌کند.' },
+    phase3: 'ماه‌های ۶ تا ۱۲: رشد دادن',
+    utilization: { text: 'استفاده کل از اعتبار را در همه کارت‌ها زیر ۳۰٪ سقف نگه دارید', why: 'این نسبت، که میزان استفاده از اعتبار (credit utilization) نامیده می‌شود، دومین عامل مهم بعد از تاریخچه پرداخت است.' },
+    avoidApps: { text: 'از درخواست چند حساب جدید در مدت کوتاه خودداری کنید', why: 'هر درخواست می‌تواند باعث افت کوچک و موقت در امتیاز شما شود.' },
+    yearlyCheck: { text: 'یک بار در سال گزارش اعتباری خود را برای خطاها یا نشانه‌های کلاهبرداری بررسی کنید', why: 'اشتباهات پیش می‌آید، و تشخیص زود آن‌ها بسیار آسان‌تر از اصلاح بعدی است.' },
+    phase4: 'مستمر'
+  },
+  products: {
+    bankMajor: { name: 'Chase, Bank of America, Wells Fargo, یا Citibank (چیس، بانک آو امریکا، ولز فارگو یا سیتی‌بانک)', tag: 'ITIN دارید', req: 'ITIN به همراه پاسپورت یا کارت هویت کنسولی. مراجعه حضوری به شعبه لازم است.', pros: ['شبکه گسترده شعبه‌ها و دستگاه‌های خودپرداز (ATM)', 'اپلیکیشن کامل بانکی پس از باز شدن حساب', 'مسیر روشن برای گرفتن کارت اعتباری از همان بانک بعداً'], cons: ['معمولاً نمی‌توانید با ITIN آنلاین درخواست دهید، مراجعه حضوری لازم است', 'کارمزد ماهانه مگر شرایط معافیت را داشته باشید'] },
+    bankNeo: { name: 'Chime, Current, یا Varo (چایم، کارنت یا وارو)', tag: 'SSN دارید', req: 'به شماره تأمین اجتماعی نیاز دارد، نه ITIN.', pros: ['بدون کارمزد ماهانه', 'باز شدن حساب در حدود ۱۰ روز کاری', 'اپلیکیشن ساده و موبایل‌محور'], cons: ['بدون شماره تأمین اجتماعی گزینه‌ای نیست', 'بدون شعبه فیزیکی اگر کمک حضوری ترجیح می‌دهید'] },
+    bankCU: { name: 'یک اتحادیه اعتباری (credit union) محلی', tag: 'در هر دو حالت منعطف', req: 'اغلب هویت کنسولی مانند Matrícula Consular را همراه با ITIN یا SSN می‌پذیرد.', pros: ['کارمزد کمتر از بانک‌های بزرگ', 'خدمات شخصی‌تر، اغلب چندزبانه', 'گاهی انعطاف بیشتر در مدارک'], cons: ['شبکه خودپرداز کوچک‌تر', 'ابزارهای دیجیتال کمتر نسبت به بانک بزرگ'] },
+    cardCapOne: { name: 'Capital One Quicksilver Secured', tag: 'ITIN پذیرفته می‌شود', req: 'به ITIN و یک ودیعه قابل استرداد (حداقل ۲۰۰ دلار) نیاز دارد.', pros: ['۱.۵٪ بازگشت نقدی روی خریدها، بدون کارمزد سالانه', 'به هر سه دفتر اعتباری گزارش می‌دهد', 'بازبینی خودکار برای ارتقا حدود ۶ ماه بعد'], cons: ['نیاز به پول نقد از پیش برای ودیعه', 'تأیید همچنان به تأیید درآمد بستگی دارد'] },
+    cardOpenSky: { name: 'OpenSky Secured Visa', tag: 'بدون نیاز به SSN یا ITIN', req: 'فقط هویت معتبر، اصلاً نیازی به SSN یا ITIN نیست.', pros: ['یکی از تنها کارت‌هایی که نه به SSN و نه به ITIN نیاز دارد', 'به هر سه دفتر گزارش می‌دهد', 'گزینه خوبی برای همان هفته‌های اول شما'], cons: ['کارمزد سالانه ۳۵ دلار، بالاتر از بیشتر رقبا', 'نرخ بهره (APR) حدود ۲۰٪، پس پرداخت کامل موجودی خیلی مهم است'] },
+    cardFirstcard: { name: 'Firstcard', tag: 'بدون نیاز به SSN یا ITIN', req: 'از پاسپورت و مدارک ویزا به جای SSN یا ITIN استفاده می‌کند.', pros: ['مخصوص افراد تازه‌وارد به اعتبار آمریکا ساخته شده', 'برای درخواست به سابقه اعتباری نیاز ندارد', 'به هر سه دفتر گزارش می‌دهد'], cons: ['یک محصول فین‌تک جدیدتر است، نه یک بانک سنتی', 'شناخت برند کمتر نسبت به کارت‌های بانکی'] },
+    cardDeserve: { name: 'Deserve (از طریق Nova Credit)', tag: 'سابقه اعتباری خارجی دارید', req: 'برای متقاضیانی با سابقه اعتباری موجود در هند، بریتانیا، کانادا و چند کشور دیگر.', pros: ['بلافاصله کارت غیرتضمینی (unsecured) بدون ودیعه می‌گیرید', 'سابقه اعتباری‌ای که قبلاً در خارج ساخته‌اید را می‌شناسد'], cons: ['فقط اگر کشور شما پشتیبانی شود کار می‌کند', 'اگر در هیچ‌جا سابقه اعتباری قبلی ندارید مفید نیست'] }
+  }
+},
+ar: {
+  langNote: '',
+  eduTitle: 'ما هو التصنيف الائتماني (credit score)، ولماذا يهم؟',
+  eduBody: [
+    ['ما هو.', 'التصنيف الائتماني (credit score) هو رقم، عادة بين 300 و850، يقدّر مدى احتمال سدادك للمال المقترَض في موعده. يستخدمه المُقرضون وأصحاب العقارات وأحياناً أصحاب العمل لتقرير قبولك ونسبة الفائدة (APR) أو مبلغ التأمين المطلوب.'],
+    ['لماذا يهم هنا.', 'قد يتحقق منه صاحب العقار قبل تأجيرك. يمكن أن يختلف سعر قرض السيارة أو الرهن العقاري (mortgage) بآلاف الدولارات حسب تصنيفك. بعض شركات المرافق والهاتف تُعفي من التأمين المالي لأصحاب التصنيف الجيد. الولايات المتحدة نظام قائم على القروض، لذا يرافقك هذا الرقم في كثير من قرارات الحياة اليومية.'],
+    ['المكاتب الثلاثة (credit bureaus).', 'ثلاث شركات، إكويفاكس (Equifax) وإكسبيريان (Experian) وترانس يونيون (TransUnion)، تحتفظ كل منها بسجلها الخاص لنشاطك الائتماني وتحسب نسختها الخاصة من التصنيف. لا تتفق دائماً، لأن المُقرضين لا يُبلّغون جميعهم الثلاثة مكاتب. لهذا قد يبدو تصنيفك مختلفاً قليلاً حسب مكان الاستعلام عنه.'],
+    ['أين تتحقق منه مجاناً.', 'موقع AnnualCreditReport.com هو الموقع الوحيد المطلوب بموجب القانون الفيدرالي أن يقدم تقارير ائتمانية (credit reports) مجانية من المكاتب الثلاثة. تعرض أيضاً كثير من البنوك وبطاقات الائتمان تقديراً مجانياً للتصنيف في تطبيقها بمجرد فتح حساب.'],
+    ['ما الذي يؤثر فيه أكثر.', 'السداد في الموعد (payment history) هو الأهم، يليه مقدار استخدامك للائتمان المتاح (credit utilization)، ثم طول تاريخك الائتماني، وتنوع أنواع الحسابات لديك، وعدد مرات تقديمك لطلبات ائتمان جديدة.']
+  ],
+  eduLinkText: 'AnnualCreditReport.com',
+  q1: 'هل لديك رقم ضمان اجتماعي (Social Security Number, SSN) أو ITIN؟', q1a: 'نعم لدي', q1b: 'ليس بعد', q1c: 'لست متأكداً مما هذا',
+  q2: 'هل لديك حالياً سجل ائتماني (credit history) في الولايات المتحدة؟', q2a: 'لا يوجد بعد', q2b: 'قليل (بطاقة أو قرض لأقل من سنة)', q2c: 'يوجد بعض السجل، لكن أريد تحسينه',
+  q3: 'هل لديك حساب مصرفي (bank account) في الولايات المتحدة؟', q3a: 'نعم', q3b: 'ليس بعد',
+  q4: 'ما هدفك الرئيسي خلال السنة أو السنتين القادمتين؟', q4a: 'استئجار شقة', q4b: 'شراء سيارة', q4c: 'العمل نحو شراء منزل', q4d: 'بناء ائتمان جيد بشكل عام',
+  startBtn: 'عرض خطتي', intakeError: 'أجب عن الأسئلة الأربعة للمتابعة.',
+  planTitle: 'خطتك', progressDone: 'مكتمل', ofWord: 'من',
+  simTitle: 'شاهد كيف تؤثر العادات على تصنيفك الائتماني (credit score)',
+  simOntime: 'سداد كل فاتورة في موعدها (on-time payment)', simUtil: 'إبقاء رصيد البطاقة أقل من 30٪ من الحد الأقصى (credit utilization)', simAge: 'إبقاء أقدم حساب لديك مفتوحاً',
+  simCaption: 'التصنيف المقدّر (estimated credit score) بعد 12 شهراً',
+  productsTitle: 'بنوك وبطاقات للنظر فيها', tabBanks: 'البنوك', tabCards: 'بطاقات الائتمان (credit cards)',
+  filterHas: 'بناءً على إجاباتك، الخيارات التي تتطلب ITIN تحديداً أقل أهمية لك، لأن لديك رقم ضمان اجتماعي (SSN) بالفعل.',
+  filterNone: 'بناءً على إجاباتك، نبرز الخيارات التي لا تتطلب رقم ضمان اجتماعي (SSN).',
+  filterUnknown: 'أكمل الأسئلة أعلاه للحصول على توصيات مناسبة لحالتك.',
+  visitSite: 'زيارة الموقع الرسمي',
+  prosLabel: 'الإيجابيات', consLabel: 'السلبيات',
+  disclaimer: 'هذا تقدير تعليمي مبسّط، وليس تصنيفاً ائتمانياً (credit score) حقيقياً أو استشارة مالية. نماذج التصنيف الفعلية تأخذ عوامل أكثر بكثير بعين الاعتبار، وشروط البطاقات والبنوك تتغير كثيراً، تأكد دائماً من التفاصيل الحالية مع الجهة المُصدرة. لقرارات القروض أو المشتريات الكبيرة، تحدث مع بنك أو مستشار ائتماني غير ربحي.',
+  startOver: 'البدء من جديد',
+  heroTitle: 'ابنِ رصيدك الائتماني خطوة بخطوة',
+  heroSub: 'خطة بلغة بسيطة للقادمين الجدد إلى النظام المالي الأمريكي. لا حاجة لسجل ائتماني للبدء.',
+  langPickerLabel: 'اختر لغتك',
+  goalCar: 'في طريقك إلى قرض سيارة (car loan) تفهمه جيداً',
+  goalHouse: 'في طريقك إلى تصنيف جاهز للرهن العقاري (mortgage)',
+  goalRent: 'في طريقك إلى الاستئجار بثقة',
+  goalGeneral: 'في طريقك إلى ائتمان قوي ومستقر',
+  youAreHere: 'أنت هنا', footerPrivacy: 'الخصوصية', footerA11y: 'إمكانية الوصول',
+  privacyHeading: 'الخصوصية', a11yHeading: 'إمكانية الوصول',
+  privacyP1: 'لا يرسل هذا التطبيق إجاباتك أو تقدمك إلى أي خادم. كل ما تدخله، إجابات الاستبيان، المهام المحددة، واختيار اللغة، يُحفظ فقط في متصفحك باستخدام التخزين المحلي (local storage)، على جهازك الخاص. لا يُجمع أو يُتتبع أو يُشارك أي شيء مع أي شخص، بما في ذلك صانعو هذه الأداة.',
+  privacyP2: 'مسح بيانات المتصفح، أو استخدام متصفح آخر، أو استخدام وضع التصفح الخاص/incognito سيزيل هذه المعلومات المحفوظة. لا يوجد حساب، ولا تسجيل دخول، ولا طريقة لأي شخص آخر لرؤية إجاباتك.',
+  privacyP3: 'الروابط إلى البنوك ومُصدري البطاقات الخارجية تنقلك خارج هذا التطبيق تماماً. بمجرد زيارة موقعهم، تُطبَّق سياسة الخصوصية الخاصة بهم، وليست هذه.',
+  a11yP1: 'تم بناء هذا التطبيق باستخدام HTML الدلالي (semantic HTML)، وحالات تركيز مرئية، وعناصر تحكم نماذج موسومة بوضوح حتى يمكن استخدامه بلوحة المفاتيح وقارئات الشاشة. تم اختيار ألوان النص والخلفية لتحقيق معايير التباين القياسية في كل من الوضع الفاتح والداكن.',
+  a11yP2: 'تُعرض العربية والفارسية بتخطيط كامل من اليمين إلى اليسار، وليس مجرد نص معكوس. تستخدم أحجام الخط وحدات نسبية حتى تحترم الصفحة إعدادات حجم النص في متصفحك أو جهازك.',
+  a11yP3: 'هذا نموذج أولي (prototype) ولم يخضع بعد لمراجعة كاملة لإمكانية الوصول من قبل متخصص أو من قبل أشخاص يستخدمون التقنية المساعدة يومياً. إذا كان هناك شيء صعب الاستخدام، فمعرفة ذلك مفيدة وتستحق الإصلاح.',
+  tasks: {
+    itin: { text: 'ابحث عن كيفية الحصول على ITIN (Individual Taxpayer Identification Number) إذا لم تكن مؤهلاً لرقم ضمان اجتماعي (SSN)', why: 'تحتاج إلى أحدهما لفتح معظم الحسابات المصرفية والمنتجات الائتمانية.' },
+    openBank: { text: 'افتح حساباً جارياً وحساب توفير (checking and savings account) في بنك أو اتحاد ائتماني (credit union)', why: 'هذا هو الأساس الذي يُبنى عليه كل شيء آخر، ولدى كثير من البنوك حسابات مصممة للقادمين الجدد.' },
+    securedCard: { text: 'تقدم بطلب للحصول على بطاقة ائتمان مضمونة (secured credit card)', why: 'تودع مبلغاً كحد ائتماني لك، لذا لا تعتمد الموافقة على سجل ائتماني سابق في الولايات المتحدة.' },
+    autopay: { text: 'فعّل الدفع التلقائي (autopay) على الأقل للحد الأدنى من الدفعة', why: 'سجل السداد (payment history) هو العامل الأهم في تصنيفك الائتماني. تفويت دفعة هو أكثر شيء ضاراً يمكن أن تفعله.' },
+    phase1: 'الشهران 1-2: الأساس',
+    smallPurchases: { text: 'استخدم البطاقة المضمونة لمشتريات صغيرة ومنتظمة (مثل الوقود أو البقالة)', why: 'النشاط المنتظم يُظهر للمُقرضين أنك تستخدم الائتمان بمسؤولية، وليس فقط أنك تملك بطاقة.' },
+    payFull: { text: 'سدد الرصيد بالكامل كل شهر، وليس فقط الحد الأدنى', why: 'هذا يجنبك رسوم الفائدة ويبقي استخدامك للائتمان (credit utilization) منخفضاً، مما يساعد تصنيفك.' },
+    checkReport: { text: 'تحقق من تقريرك الائتماني (credit report) مجاناً عبر AnnualCreditReport.com', why: 'هذا هو الموقع الوحيد المطلوب قانوناً أن يمنحك تقارير مجانية من المكاتب الثلاثة، لتتمكن من اكتشاف الأخطاء مبكراً.' },
+    authorizedUser: { text: 'فكّر في أن تصبح مستخدماً مخولاً (authorized user) على بطاقة أحد أفراد العائلة الموثوقين', why: 'قد يبدأ سجلهم الإيجابي بالظهور في تقريرك أيضاً، إذا كان مُصدر البطاقة يُبلّغ عن المستخدمين المخولين.' },
+    phase2: 'الأشهر 3-6: بناء العادة',
+    upgradeCard: { text: 'اسأل مُصدر بطاقتك عن الترقية من مضمونة إلى غير مضمونة (unsecured)', why: 'بعد 6 إلى 12 شهراً من السداد في الموعد، يعيد كثير من المُصدرين وديعتك ويرفعون حدك الائتماني.' },
+    secondAccount: { text: 'فكّر في حساب ثانٍ، مثل قرض بناء الائتمان (credit-builder loan) أو بطاقة متجر', why: 'مزيج من أنواع الحسابات يمكن أن يساعد تصنيفك، لكن أضف واحداً في كل مرة ووزّعها زمنياً.' },
+    carRates: { text: 'ابحث عن أسعار الفائدة النموذجية (APR) لنطاق تصنيفك قبل التسوق لقرض سيارة', why: 'معرفة النطاق تعني أن التاجر لا يستطيع أن يعرض عليك سعراً أسوأ مما تستحقه بهدوء.' },
+    mortgageRange: { text: 'تعرّف على نطاق التصنيف الذي يبحث عنه عادة مقرضو الرهن العقاري (mortgage lenders)', why: 'تختلف المتطلبات، لكن معرفة الهدف الآن يمنحك رقماً حقيقياً للعمل نحوه.' },
+    rentReporting: { text: 'اسأل أصحاب العقارات إن كانوا يُبلّغون عن دفعات الإيجار لمكاتب الائتمان، أو استخدم خدمة الإبلاغ عن الإيجار (rent-reporting service)', why: 'الإيجار غالباً هو أكبر دفعة شهرية لك. إذا لم يُبلّغ عنه، فهو لا يساعد تصنيفك.' },
+    phase3: 'الأشهر 6-12: النمو',
+    utilization: { text: 'حافظ على إجمالي استخدام الائتمان أقل من 30٪ من حدودك عبر جميع البطاقات', why: 'هذه النسبة، المسماة استخدام الائتمان (credit utilization)، هي ثاني أهم عامل بعد سجل السداد.' },
+    avoidApps: { text: 'تجنب التقدم لعدة حسابات جديدة في فترة قصيرة', why: 'كل طلب يمكن أن يسبب انخفاضاً صغيراً ومؤقتاً في تصنيفك.' },
+    yearlyCheck: { text: 'راجع تقريرك الائتماني مرة سنوياً بحثاً عن أخطاء أو علامات احتيال', why: 'الأخطاء تحدث، واكتشافها مبكراً أسهل بكثير من إصلاحها لاحقاً.' },
+    phase4: 'مستمر'
+  },
+  products: {
+    bankMajor: { name: 'Chase, Bank of America, Wells Fargo, أو Citibank (تشيس، بنك أوف أمريكا، ويلز فارغو، أو سيتي بنك)', tag: 'لديك ITIN', req: 'ITIN مع جواز سفر أو هوية قنصلية. يتطلب زيارة شخصية لفرع.', pros: ['شبكة واسعة من الفروع وأجهزة الصراف الآلي', 'تطبيق مصرفي كامل بعد فتح الحساب', 'مسار واضح للحصول على بطاقة ائتمان من نفس البنك لاحقاً'], cons: ['عادة لا يمكن التقديم عبر الإنترنت باستخدام ITIN، يتطلب زيارة الفرع', 'رسوم شهرية ما لم تستوفِ شرط الإعفاء'] },
+    bankNeo: { name: 'Chime, Current, أو Varo (تشايم، كارنت، أو فارو)', tag: 'لديك SSN', req: 'يتطلب رقم ضمان اجتماعي، وليس ITIN.', pros: ['بدون رسوم شهرية', 'فتح الحساب خلال حوالي 10 أيام عمل', 'تطبيق بسيط يركز على الهاتف'], cons: ['ليس خياراً بدون رقم ضمان اجتماعي', 'بدون فروع فعلية إذا كنت تفضل المساعدة الشخصية'] },
+    bankCU: { name: 'اتحاد ائتماني (credit union) محلي', tag: 'مرن في الحالتين', req: 'غالباً يقبل هوية قنصلية مثل Matrícula Consular إلى جانب ITIN أو SSN.', pros: ['رسوم أقل من البنوك الكبيرة', 'خدمة أكثر تخصيصاً، وغالباً متعددة اللغات', 'أحياناً أكثر مرونة في المستندات'], cons: ['شبكة صرافات آلية أصغر', 'أدوات رقمية أقل من بنك كبير'] },
+    cardCapOne: { name: 'Capital One Quicksilver Secured', tag: 'يقبل ITIN', req: 'يحتاج ITIN ووديعة قابلة للاسترداد (تبدأ من 200 دولار).', pros: ['استرداد نقدي 1.5٪ على المشتريات، بدون رسوم سنوية', 'يُبلّغ إلى المكاتب الائتمانية الثلاثة', 'مراجعة تلقائية للترقية بعد حوالي 6 أشهر'], cons: ['يتطلب نقداً مقدماً للوديعة', 'الموافقة لا تزال تعتمد على التحقق من الدخل'] },
+    cardOpenSky: { name: 'OpenSky Secured Visa', tag: 'لا حاجة لـ SSN أو ITIN', req: 'هوية سارية فقط، لا حاجة لـ SSN أو ITIN إطلاقاً.', pros: ['من البطاقات القليلة التي لا تحتاج SSN ولا ITIN', 'يُبلّغ إلى المكاتب الثلاثة', 'خيار جيد في أسابيعك الأولى'], cons: ['رسوم سنوية 35 دولاراً، أعلى من معظم المنافسين', 'نسبة فائدة (APR) حوالي 20٪، لذا سداد الرصيد كاملاً مهم جداً'] },
+    cardFirstcard: { name: 'Firstcard', tag: 'لا حاجة لـ SSN أو ITIN', req: 'يستخدم جواز السفر ومستندات التأشيرة بدلاً من SSN أو ITIN.', pros: ['مصمم خصيصاً للقادمين الجدد إلى الائتمان الأمريكي', 'لا يحتاج سجلاً ائتمانياً للتقديم', 'يُبلّغ إلى المكاتب الثلاثة'], cons: ['منتج تقني مالي أحدث، وليس بنكاً تقليدياً', 'تعرّف أقل على العلامة التجارية مقارنة ببطاقات البنوك'] },
+    cardDeserve: { name: 'Deserve (عبر Nova Credit)', tag: 'لديك سجل ائتماني أجنبي', req: 'للمتقدمين الذين لديهم سجل ائتماني قائم في الهند أو المملكة المتحدة أو كندا وبعض الدول الأخرى.', pros: ['يمكن الحصول على بطاقة غير مضمونة فوراً، بدون وديعة', 'يعترف بالسجل الائتماني الذي بنيته بالفعل في الخارج'], cons: ['يعمل فقط إذا كان بلدك الأصلي مدعوماً', 'غير مفيد إذا لم يكن لديك سجل ائتماني سابق في أي مكان'] }
+  }
+},
+uk: {
+  langNote: '',
+  eduTitle: 'Що таке кредитний рейтинг (credit score) і чому це важливо?',
+  eduBody: [
+    ['Що це таке.', 'Кредитний рейтинг (credit score) — це число, зазвичай від 300 до 850, яке оцінює, наскільки ймовірно, що ви вчасно поверните позичені гроші. Кредитори, орендодавці, а іноді й роботодавці використовують його, щоб вирішити, чи схвалити вас, і яку відсоткову ставку (APR) або депозит запропонувати.'],
+    ['Чому це важливо тут.', 'Орендодавець може перевірити його перед тим, як здати вам житло. Ставка за автокредитом чи іпотекою (mortgage) може відрізнятися на тисячі доларів залежно від вашого рейтингу. Деякі постачальники комунальних послуг і мобільного зв\'язку скасовують депозит для людей із хорошим рейтингом. США — система, побудована на кредитах, тому це число супроводжує вас у багатьох повсякденних рішеннях.'],
+    ['Три бюро (credit bureaus).', 'Три компанії, Equifax, Experian та TransUnion, кожна веде власний запис вашої кредитної активності та обчислює власну версію вашого рейтингу. Вони не завжди збігаються, оскільки не всі кредитори звітують до всіх трьох. Тому ваш рейтинг може виглядати трохи по-різному залежно від того, де ви його перевіряєте.'],
+    ['Де перевірити безкоштовно.', 'AnnualCreditReport.com — єдиний сайт, який за федеральним законом зобов\'язаний надавати безкоштовні кредитні звіти (credit reports) від усіх трьох бюро. Багато банків і кредитних карток також показують безкоштовну оцінку рейтингу у своєму застосунку, щойно у вас є рахунок.'],
+    ['Що впливає найбільше.', 'Найважливіше — своєчасні платежі (payment history), потім те, наскільки ви використовуєте доступний кредит (credit utilization), далі тривалість кредитної історії, різноманітність типів рахунків та те, як часто ви подаєте заявки на новий кредит.']
+  ],
+  eduLinkText: 'AnnualCreditReport.com',
+  q1: 'У вас є номер соціального страхування (Social Security Number, SSN) або ITIN?', q1a: 'Так, є', q1b: 'Ще ні', q1c: 'Не впевнений(а), що це таке',
+  q2: 'Чи маєте ви наразі кредитну історію (credit history) в США?', q2a: 'Поки що немає', q2b: 'Трохи (картка або кредит менше року)', q2c: 'Дещо є, але хочу покращити',
+  q3: 'У вас є банківський рахунок (bank account) у США?', q3a: 'Так', q3b: 'Ще ні',
+  q4: 'Яка ваша головна мета на наступні 1-2 роки?', q4a: 'Орендувати квартиру', q4b: 'Купити автомобіль', q4c: 'Працювати над покупкою будинку', q4d: 'Просто побудувати хорошу кредитну історію',
+  startBtn: 'Переглянути мій план', intakeError: 'Дайте відповідь на всі чотири запитання, щоб продовжити.',
+  planTitle: 'Ваш план', progressDone: 'виконано', ofWord: 'з',
+  simTitle: 'Подивіться, як звички впливають на ваш кредитний рейтинг (credit score)',
+  simOntime: 'Сплачувати кожен рахунок вчасно (on-time payment)', simUtil: 'Тримати баланс картки нижче 30% ліміту (credit utilization)', simAge: 'Тримати найстаріший рахунок відкритим',
+  simCaption: 'Прогнозований рейтинг (estimated credit score) через 12 місяців',
+  productsTitle: 'Банки та картки для розгляду', tabBanks: 'Банки', tabCards: 'Кредитні картки (credit cards)',
+  filterHas: 'Виходячи з ваших відповідей, варіанти, що потребують саме ITIN, менш актуальні для вас, оскільки у вас уже є SSN.',
+  filterNone: 'Виходячи з ваших відповідей, ми виділяємо варіанти, які не потребують SSN.',
+  filterUnknown: 'Дайте відповідь на запитання вище, щоб отримати рекомендації відповідно до вашої ситуації.',
+  visitSite: 'Відвідати офіційний сайт',
+  prosLabel: 'Переваги', consLabel: 'Недоліки',
+  disclaimer: 'Це спрощена освітня оцінка, а не реальний кредитний рейтинг (credit score) чи фінансова консультація. Реальні моделі оцінки враховують значно більше факторів, а умови карток і банків часто змінюються, завжди уточнюйте актуальні деталі у самої установи. Для рішень щодо кредитів чи великих покупок зверніться до банку або некомерційного кредитного консультанта.',
+  startOver: 'Почати заново',
+  heroTitle: 'Будуйте свою кредитну історію крок за кроком',
+  heroSub: 'План простою мовою для людей, які нещодавно потрапили у фінансову систему США. Кредитна історія для початку не потрібна.',
+  langPickerLabel: 'Оберіть свою мову',
+  goalCar: 'На шляху до автокредиту (car loan), який ви розумієте',
+  goalHouse: 'На шляху до рейтингу, готового для іпотеки (mortgage)',
+  goalRent: 'На шляху до впевненої оренди житла',
+  goalGeneral: 'На шляху до міцної, стабільної кредитної історії',
+  youAreHere: 'Ви тут', footerPrivacy: 'Конфіденційність', footerA11y: 'Доступність',
+  privacyHeading: 'Конфіденційність', a11yHeading: 'Доступність',
+  privacyP1: 'Цей застосунок не надсилає ваші відповіді чи прогрес на жоден сервер. Усе, що ви вводите, відповіді на запитання, позначені завдання та вибір мови, зберігається лише у вашому браузері за допомогою локального сховища (local storage), на вашому власному пристрої. Нічого не збирається, не відстежується і не передається нікому, включно з творцями цього інструменту.',
+  privacyP2: 'Очищення даних браузера, використання іншого браузера або приватного режиму/інкогніто видалить цю збережену інформацію. Немає облікового запису, входу в систему чи способу для когось іншого побачити ваші відповіді.',
+  privacyP3: 'Посилання на зовнішні банки та емітентів карток повністю виводять вас із цього застосунку. Після відвідування їхнього сайту застосовується їхня власна політика конфіденційності, а не ця.',
+  a11yP1: 'Цей застосунок побудований із семантичним HTML, видимими станами фокусу та маркованими елементами керування форми, тож ним можна користуватися з клавіатури та за допомогою програм читання з екрана. Кольори тексту й фону обрано відповідно до стандартних вимог контрастності як у світлому, так і в темному режимі.',
+  a11yP2: 'Арабська та перська мови відображаються в повноцінному макеті справа наліво, а не просто в дзеркальному тексті. Розміри шрифту використовують відносні одиниці, тож сторінка враховує налаштування розміру тексту вашого браузера чи пристрою.',
+  a11yP3: 'Це прототип, який ще не пройшов повний аудит доступності від фахівця або людей, які щодня користуються допоміжними технологіями. Якщо щось незручно використовувати, це корисно знати й варто виправити.',
+  tasks: {
+    itin: { text: 'Дізнайтеся про отримання ITIN (Individual Taxpayer Identification Number), якщо ви не маєте права на номер соціального страхування (SSN)', why: 'Вам потрібен один із них, щоб відкрити більшість банківських рахунків і кредитних продуктів.' },
+    openBank: { text: 'Відкрийте поточний і ощадний рахунок (checking and savings account) у банку або кредитній спілці (credit union)', why: 'Це основа, на якій будується все інше, і в багатьох банків є рахунки, створені для новоприбулих.' },
+    securedCard: { text: 'Подайте заявку на забезпечену кредитну картку (secured credit card)', why: 'Ви вносите депозит як свій ліміт, тому схвалення не залежить від попередньої кредитної історії в США.' },
+    autopay: { text: 'Налаштуйте автоматичну оплату (autopay) хоча б мінімального платежу', why: 'Історія платежів (payment history) — найважливіший фактор вашого кредитного рейтингу. Пропущений платіж — найшкідливіше, що можна зробити.' },
+    phase1: 'Місяці 1-2: основа',
+    smallPurchases: { text: 'Використовуйте забезпечену картку для невеликих регулярних покупок (наприклад, пальне чи продукти)', why: 'Регулярна активність показує кредиторам, що ви відповідально користуєтеся кредитом, а не просто маєте картку.' },
+    payFull: { text: 'Погашайте повний баланс щомісяця, а не лише мінімум', why: 'Це дозволяє уникнути відсоткових нарахувань і тримає використання кредиту (credit utilization) низьким, що допомагає рейтингу.' },
+    checkReport: { text: 'Перевіряйте свій кредитний звіт (credit report) безкоштовно на AnnualCreditReport.com', why: 'Це єдиний сайт, який за законом зобов\'язаний надавати безкоштовні звіти від усіх трьох бюро, тож ви можете вчасно помітити помилки.' },
+    authorizedUser: { text: 'Розгляньте можливість стати авторизованим користувачем (authorized user) на картці довіреного члена родини', why: 'Їхня позитивна історія теж може почати з\'являтися у вашому звіті, якщо емітент картки звітує про авторизованих користувачів.' },
+    phase2: 'Місяці 3-6: формуйте звичку',
+    upgradeCard: { text: 'Запитайте у емітента картки про перехід із забезпеченої на незабезпечену (unsecured)', why: 'Після 6-12 місяців своєчасних платежів багато емітентів повертають депозит і підвищують ліміт.' },
+    secondAccount: { text: 'Розгляньте другий рахунок, наприклад кредит для формування кредитної історії (credit-builder loan) або магазинну картку', why: 'Поєднання типів рахунків може допомогти рейтингу, але додавайте лише один за раз і з інтервалом.' },
+    carRates: { text: 'Дослідіть типові відсоткові ставки (APR) для вашого діапазону рейтингу перед пошуком автокредиту', why: 'Знання діапазону означає, що дилер не зможе непомітно запропонувати вам гіршу ставку, ніж та, на яку ви маєте право.' },
+    mortgageRange: { text: 'Дізнайтеся, який діапазон рейтингу зазвичай шукають іпотечні кредитори (mortgage lenders)', why: 'Вимоги різняться, але знання цілі зараз дає вам реальне число, до якого прагнути.' },
+    rentReporting: { text: 'Запитайте орендодавців, чи звітують вони про орендні платежі до кредитних бюро, або скористайтеся сервісом звітування про оренду (rent-reporting service)', why: 'Оренда часто є вашим найбільшим щомісячним платежем. Якщо про неї не звітують, вона не допомагає вашому рейтингу.' },
+    phase3: 'Місяці 6-12: розвивайте',
+    utilization: { text: 'Тримайте загальне використання кредиту нижче 30% лімітів на всіх картках', why: 'Це співвідношення, зване використанням кредиту (credit utilization), є другим за важливістю фактором після історії платежів.' },
+    avoidApps: { text: 'Уникайте подання заявок на кілька нових рахунків за короткий період', why: 'Кожна заявка може спричинити невелике тимчасове зниження вашого рейтингу.' },
+    yearlyCheck: { text: 'Переглядайте свій кредитний звіт раз на рік на предмет помилок чи ознак шахрайства', why: 'Помилки трапляються, і виявити їх раніше набагато легше, ніж виправляти пізніше.' },
+    phase4: 'Постійно'
+  },
+  products: {
+    bankMajor: { name: 'Chase, Bank of America, Wells Fargo або Citibank', tag: 'Маєте ITIN', req: 'ITIN плюс паспорт або консульське посвідчення. Потрібен особистий візит до відділення.', pros: ['Велика мережа відділень і банкоматів', 'Повноцінний банківський застосунок після відкриття', 'Чіткий шлях до кредитної картки в тому ж банку пізніше'], cons: ['Зазвичай не можна подати заявку онлайн з ITIN, потрібен візит до відділення', 'Щомісячна плата, якщо не виконуєте умови звільнення'] },
+    bankNeo: { name: 'Chime, Current або Varo', tag: 'Маєте SSN', req: 'Потрібен номер соціального страхування, не ITIN.', pros: ['Без щомісячної плати', 'Рахунок відкривається приблизно за 10 робочих днів', 'Простий застосунок, орієнтований на мобільний'], cons: ['Не варіант без SSN', 'Немає фізичних відділень, якщо ви віддаєте перевагу особистій допомозі'] },
+    bankCU: { name: 'Місцева кредитна спілка (credit union)', tag: 'Гнучкі в обох випадках', req: 'Часто приймає консульське посвідчення на кшталт Matrícula Consular разом з ITIN або SSN.', pros: ['Нижчі комісії, ніж у великих банків', 'Більш персоналізоване, часто багатомовне обслуговування', 'Іноді гнучкіші вимоги до документів'], cons: ['Менша мережа банкоматів', 'Менше цифрових інструментів, ніж у великого банку'] },
+    cardCapOne: { name: 'Capital One Quicksilver Secured', tag: 'Приймає ITIN', req: 'Потрібен ITIN і депозит, що повертається (від 200 доларів).', pros: ['1.5% кешбеку на покупки, без річної плати', 'Звітує до всіх трьох кредитних бюро', 'Автоматичний перегляд для підвищення приблизно через 6 місяців'], cons: ['Потребує готівки наперед для депозиту', 'Схвалення все ще залежить від підтвердження доходу'] },
+    cardOpenSky: { name: 'OpenSky Secured Visa', tag: 'Не потрібен SSN чи ITIN', req: 'Лише дійсне посвідчення особи, SSN чи ITIN не потрібні взагалі.', pros: ['Одна з небагатьох карток, яка не потребує ні SSN, ні ITIN', 'Звітує до всіх трьох бюро', 'Хороший варіант у ваші перші тижні'], cons: ['Річна плата 35 доларів, вища за більшість конкурентів', 'Ставка (APR) близько 20%, тому повне погашення балансу дуже важливе'] },
+    cardFirstcard: { name: 'Firstcard', tag: 'Не потрібен SSN чи ITIN', req: 'Використовує паспорт і візові документи замість SSN чи ITIN.', pros: ['Створена спеціально для людей, нових у кредитній системі США', 'Не потребує кредитної історії для подання заявки', 'Звітує до всіх трьох бюро'], cons: ['Новіший фінтех-продукт, а не традиційний банк', 'Менше впізнаваність бренду, ніж у банківських карток'] },
+    cardDeserve: { name: 'Deserve (через Nova Credit)', tag: 'Маєте закордонну кредитну історію', req: 'Для заявників з наявною кредитною історією в Індії, Великій Британії, Канаді та кількох інших країнах.', pros: ['Можна одразу отримати незабезпечену картку, без депозиту', 'Враховує кредитну історію, яку ви вже побудували за кордоном'], cons: ['Працює лише якщо ваша країна підтримується', 'Не корисно, якщо у вас немає попередньої кредитної історії ніде'] }
+  }
+},
+so: {
+  langNote: '',
+  eduTitle: 'Waa maxay dhibcaha deynta (credit score), waana sababta ay muhiim u tahay?',
+  eduBody: [
+    ['Waa maxay.', 'Dhibcaha deynta (credit score) waa lambar, badiyaa u dhexeeya 300 iyo 850, kaas oo qiyaasa inta ay u badan tahay inaad ku bixiso wakhtigeeda lacagta aad amaahatay. Deyn-bixiyeyaasha, mulkiilayaasha guryaha, iyo mararka qaarna shaqo-bixiyeyaasha ayaa isticmaala si ay u go\'aamiyaan in lagu oggolaado iyo heerka dulsaarka (APR) ama qasabka lacagta.'],
+    ['Sababta ay halkan muhiim u tahay.', 'Mulkiilaha guriga ayaa laga yaabaa inuu hubiyo ka hor inta uusan kuu kirayn. Deynta gaariga ama deynta guriga (mortgage) waxay ku kala duwanaan kartaa kumanaan doollar iyadoo ku xiran dhibcahaaga. Shirkadaha korontada iyo taleefannada qaarkood waxay ka saaraan qasabka dadka leh dhibco fiican. Maraykanku waa nidaam ku dhisan deymaha, sidaa darteed lambarkani wuxuu ku raacaa go\'aamo badan oo maalmeed.'],
+    ['Saddexda xafiis (credit bureaus).', 'Saddex shirkadood, Equifax, Experian, iyo TransUnion, mid waliba wuxuu hayaa diiwaankiisa gaarka ah ee dhaqdhaqaaqaaga deynta wuxuuna xisaabiyaa nooca isaga gaarka ah ee dhibcahaaga. Marwalba ma isku raacaan, maadaama deyn-bixiyeyaasha oo dhan aysan wax u sheegin saddexdaba. Sidaas darteed dhibcahaagu wuxuu u ekaan karaa mid ka duwan halka aad ka hubiso.'],
+    ['Halka lagu hubin karo bilaash.', 'AnnualCreditReport.com waa xafiiska kaliya ee sharciga federaalku ku waajibiyo inuu bixiyo warbixino deyn (credit reports) oo bilaash ah oo ka socda saddexda xafiis. Bangiyo iyo kaararka deynta badankoodu sidoo kale waxay ku tusayaan qiyaas dhibco bilaash ah abka gudahiisa mar haddii aad haysato akoon.'],
+    ['Waxa ugu badan ee saameeya.', 'Bixinta wakhtigeeda (payment history) ayaa ugu muhiimsan, xigana inta aad isticmaasho deynta la heli karo (credit utilization), ka dibna muddada taariikhda deyntaada, isku-darka noocyada akoonnadaada, iyo inta jeer ee aad codsato deyn cusub.']
+  ],
+  eduLinkText: 'AnnualCreditReport.com',
+  q1: 'Ma haysataa Lambarka Bulshada (Social Security Number, SSN) ama ITIN?', q1a: 'Haa waan haystaa', q1b: 'Weli ma haysto', q1c: 'Ma hubo waxa ay tahay',
+  q2: 'Ma haysataa taariikh deyn (credit history) oo Maraykan ah hadda?', q2a: 'Weli midna ma jiro', q2b: 'Wax yar (kaar ama deyn ka yar sanad)', q2c: 'Wax baan haystaa, laakiin waxaan doonayaa inaan hagaajiyo',
+  q3: 'Ma haysataa akoon bangi (bank account) oo Maraykan ah?', q3a: 'Haa', q3b: 'Weli ma haysto',
+  q4: 'Waa maxay hadafkaaga ugu weyn ee 1-2 sano ee soo socda?', q4a: 'Kirayn guri', q4b: 'Iibsiga gaari', q4c: 'U shaqaynta iibsiga guri', q4d: 'Dhisidda deyn wanaagsan guud ahaan',
+  startBtn: 'Fiiri qorshahayga', intakeError: 'Ka jawaab afarta su\'aalood si aad u sii wado.',
+  planTitle: 'Qorshahaaga', progressDone: 'la dhammeeyay', ofWord: 'ee',
+  simTitle: 'Fiiri sida caadooyinku u saameeyaan dhibcaha deyntaada (credit score)',
+  simOntime: 'Bixi biil kasta wakhtigeeda (on-time payment)', simUtil: 'Ku hay baaqiga kaarka ka hooseeya 30% xadka (credit utilization)', simAge: 'Sii dhig akoonkaaga ugu da\'da weyn oo furan',
+  simCaption: 'Dhibcaha lagu qiyaasay (estimated credit score) 12 bilood ka dib',
+  productsTitle: 'Bangiyo iyo kaararka la tixgelinayo', tabBanks: 'Bangiyada', tabCards: 'Kaararka deynta (credit cards)',
+  filterHas: 'Iyadoo lagu saleynayo jawaabahaaga, ikhtiyaarrada u baahan ITIN gaar ahaan ayaa kuu adkaanaya inay muhiim kuu ahaadaan, maadaama aad hore u haysato SSN.',
+  filterNone: 'Iyadoo lagu saleynayo jawaabahaaga, waxaan muujineynaa ikhtiyaarrada aan u baahnayn SSN.',
+  filterUnknown: 'Ka jawaab su\'aalaha kore si aad u hesho talooyin ku habboon xaaladaada.',
+  visitSite: 'Booqo bogga rasmiga ah',
+  prosLabel: 'Faa\'iidooyinka', consLabel: 'Khasaarooyinka',
+  disclaimer: 'Kani waa qiyaas waxbarasho oo la fududeeyay, ma aha dhibco deyn (credit score) oo dhab ah ama talo maaliyadeed. Qaababka qiyaasta dhabta ah waxay tixgeliyaan arrimo aad uga badan, shuruudaha kaararka iyo bangiyaduna waxay isbedbeddelaan marar badan, had iyo jeer ka xaqiiji faahfaahinta hadda ee bixiyaha. Go\'aannada la xiriira deynta ama iibsiga waaweyn, la hadal bangi ama la-taliye deyn oo aan faa\'iido doon ahayn.',
+  startOver: 'Ku bilow mar kale',
+  heroTitle: 'Dhis deyntaada, tallaabo tallaabo ah',
+  heroSub: 'Qorshe luuqad fudud u qoran oo loogu talagalay dadka cusub ee nidaamka maaliyadeed ee Maraykanka. Taariikh deyn looma baahna si loo bilaabo.',
+  langPickerLabel: 'Dooro luuqaddaada',
+  goalCar: 'Waxaad ku socotaa deyn gaari (car loan) aad fahantay',
+  goalHouse: 'Waxaad ku socotaa dhibco u diyaar ah deynta guriga (mortgage)',
+  goalRent: 'Waxaad ku socotaa kiraysi kalsooni leh',
+  goalGeneral: 'Waxaad ku socotaa deyn adag oo xasilloon',
+  youAreHere: 'Halkan ayaad joogtaa', footerPrivacy: 'Asturnaanta', footerA11y: 'Helitaanka',
+  privacyHeading: 'Asturnaanta', a11yHeading: 'Helitaanka',
+  privacyP1: 'Abkani uma diro jawaabahaaga ama horumarkaaga server kasta. Wax kasta oo aad gelisid, jawaabaha su\'aalaha, hawlaha la calaamadeeyay, iyo doorashada luuqadda, waxaa lagu kaydiyaa keliya biraawsarkaaga adigoo isticmaalaya kaydinta maxalliga ah (local storage), qalabkaaga gaarka ah. Waxba lama ururiyo, lama la socdo, lamana la wadaago cid kasta, oo ay ku jiraan kuwa sameeyay qalabkan.',
+  privacyP2: 'Nadiifinta xogta biraawsarkaaga, isticmaalka biraawsar kale, ama isticmaalka habka gaarka ah/incognito ayaa ka saaraya macluumaadkan la kaydiyay. Ma jiro akoon, gelitaan, ama hab ay qof kale ugu arki karo jawaabahaaga.',
+  privacyP3: 'Xiriiriyayaasha bangiyada iyo bixiyeyaasha kaararka dibadda waxay kaa saarayaan abkan gebi ahaanba. Marka aad booqato boggooda, waxaa khusaysa siyaasaddooda asturnaanta gaarka ah, ee maaha tan.',
+  a11yP1: 'Abkani waxaa lagu dhisay HTML macnaha leh (semantic HTML), xaaladaha diiradda oo la arki karo, iyo qalab foom oo calaamadaysan si loogu isticmaali karo kiiboodhka iyo akhristayaasha shaashadda. Midabada qoraalka iyo asalka waxaa loo doortay inay la mid noqdaan tilmaamaha caadiga ah ee kala duwanaanshaha midabka labadaba habka iftiinka iyo mugdiga.',
+  a11yP2: 'Carabiga iyo Faarisiga waxay ku muuqdaan naqshad dhamaystiran oo midig-ilaa-bidix ah, ee ma aha oo keliya qoraal muraayad ah. Cabbirrada qoraalku waxay isticmaalaan cabbirro isu dheh si boggu u ixtiraamo dejinta cabbirka qoraalka ee biraawsarkaaga ama qalabkaaga.',
+  a11yP3: 'Kani waa nooc hore (prototype) oo aan weli helin baaritaan buuxa oo helitaanka ah oo uu sameeyay khabiir ama dad maalin walba isticmaala tignoolajiyada caawinta. Haddii wax adkaado in la isticmaalo, ogaanshahaas waa faa\'iido leh oo mudan in la hagaajiyo.',
+  tasks: {
+    itin: { text: 'Baadh sida loo helo ITIN (Individual Taxpayer Identification Number) haddii aadan u qalmin Lambarka Bulshada (SSN)', why: 'Waxaad u baahan tahay mid ka mid ah si aad u furato akoonnada bangiga iyo badeecadaha deynta ee ugu badan.' },
+    openBank: { text: 'Fur akoon jeex iyo kaydin (checking and savings account) oo ku yaal bangi ama urur deyn (credit union)', why: 'Tani waa aasaaska wax kasta oo kale lagu dhisayo, oo bangiyo badan waxay leeyihiin akoonno loogu talagalay dadka cusub.' },
+    securedCard: { text: 'Codso kaar deyn oo la damaanad qaaday (secured credit card)', why: 'Waxaad dhigaysaa lacag ah xadkaaga, sidaa darteed ansixinta kuma xirna taariikh deyn hore oo Maraykan ah.' },
+    autopay: { text: 'Deji bixin toos ah (autopay) ugu yaraan lacagta ugu yar ee la bixin karo', why: 'Taariikhda bixinta (payment history) waa qeybta ugu muhiimsan ee dhibcahaaga deynta. Bixin ka maqan ayaa ah waxa ugu waxyeelleeya ee aad samayn karto.' },
+    phase1: 'Bilaha 1-2: aasaaska',
+    smallPurchases: { text: 'Isticmaal kaarka la damaanad qaaday si aad wax yaryar ugu iibsato oo joogto ah (sida shidaal ama raashin)', why: 'Dhaqdhaqaaq joogto ah ayaa deyn-bixiyeyaasha u muujiya inaad si mas\'uul ah u isticmaasho deynta, ee ma aha oo keliya inaad kaar haysato.' },
+    payFull: { text: 'Bixi baaqiga oo dhan bil kasta, ee ha ahaan lacagta ugu yar oo keliya', why: 'Tani waxay ka fogaynaysaa kharashyada dulsaarka waxayna hoos u dhigaysaa isticmaalkaaga deynta (credit utilization), taasoo caawisa dhibcahaaga.' },
+    checkReport: { text: 'Hubi warbixinta deyntaada (credit report) bilaash ah adigoo isticmaalaya AnnualCreditReport.com', why: 'Tani waa xafiiska kaliya ee sharciga ku waajibaya in laguu siiyo warbixino bilaash ah oo saddexda xafiisba ka socda, si aad khaladaadka horay u u ogaato.' },
+    authorizedUser: { text: 'Tixgeli inaad noqoto isticmaale la fasaxay (authorized user) kaarka xubin qoys oo aad ku kalsan tahay', why: 'Taariikhdooda wanaagsan ayaa laga yaabaa inay bilowdo inay ka muuqato warbixintaadana, haddii bixiyaha kaarku uu ka warbixiyo isticmaalayaasha la fasaxay.' },
+    phase2: 'Bilaha 3-6: dhis caadada',
+    upgradeCard: { text: 'Weydii bixiyaha kaarkaaga sida kaar la damaanad qaaday loogu wareejin karo mid aan damaanad lahayn (unsecured)', why: 'Ka dib 6-12 bilood oo bixin wakhtigeeda ah, bixiyeyaal badan ayaa ku celin doona lacagtaada waxayna kor u qaadi doonaan xadka.' },
+    secondAccount: { text: 'Tixgeli akoon labaad, sida deyn dhiska deynta (credit-builder loan) ama kaar dukaan', why: 'Isku-darka noocyada akoonnada ayaa caawin kara dhibcahaaga, laakiin mid mar ku dar oo u fasax wakhti.' },
+    carRates: { text: 'Baadh heerarka dulsaarka (APR) caadiga ah ee xadka dhibcahaaga ka hor inta aanad raadin deyn gaari', why: 'Ogaanshaha xadku wuxuu micnaynayaa in iibiyaha uu kuu bixin karin heer ka liita kaaga haysta si qarsoodi ah.' },
+    mortgageRange: { text: 'Baro xadka dhibcaha ee deyn-bixiyeyaasha guryaha (mortgage lenders) badanaa raadiyaan', why: 'Shuruudaha way kala duwan yihiin, laakiin ogaanshaha bartilmaameedka hadda wuxuu ku siinayaa lambar dhab ah oo aad u shaqayso.' },
+    rentReporting: { text: 'Weydii mulkiilayaasha guryaha haddii ay ka warbixiyaan bixinta kirada xafiisyada deynta, ama isticmaal adeeg warbixinta kirada (rent-reporting service)', why: 'Kirada waxay inta badan tahay bixintaada ugu weyn ee bishii. Haddii aan laga warbixin, ma caawinayso dhibcahaaga.' },
+    phase3: 'Bilaha 6-12: koritaanka',
+    utilization: { text: 'Ku hay isticmaalka guud ee deynta ka hooseeya 30% xadadka kaararka oo dhan', why: 'Saamigan, oo loo yaqaan isticmaalka deynta (credit utilization), waa qeybta labaad ee ugu muhiimsan ka dib taariikhda bixinta.' },
+    avoidApps: { text: 'Ka fogow codsiga dhowr akoon oo cusub muddo gaaban gudaheed', why: 'Codsi kasta wuxuu keeni karaa hoos u dhac yar oo ku meel gaadh ah oo dhibcahaaga ah.' },
+    yearlyCheck: { text: 'Sannad kasta hubi warbixintaada deynta si aad u aragto khaladaad ama calaamado khiyaano', why: 'Khaladaadku way dhacaan, oo ogaanshahooda goor hore ayaa aad uga fudud saxidooda goor dambe.' },
+    phase4: 'Sii wadan'
+  },
+  products: {
+    bankMajor: { name: 'Chase, Bank of America, Wells Fargo, ama Citibank', tag: 'Waxaad haysataa ITIN', req: 'ITIN iyo baasaboor ama aqoonsi konsulariga ah. Waxaa loo baahan yahay booqasho shakhsi ah oo laanta ah.', pros: ['Shabakad ballaaran oo laamo iyo makiinado lacag bixin (ATM) ah', 'Abka bangiga oo dhammaystiran marka la furo', 'Waddo cad oo loo maro kaar deyn oo isku bangiga mustaqbalka'], cons: ['Badanaa lama codsan karo internetka adigoo isticmaalaya ITIN, booqasho laan ayaa loo baahan yahay', 'Kharashyo bishii mid ka mid ah haddii aadan buuxin shuruudaha dhaafitaanka'] },
+    bankNeo: { name: 'Chime, Current, ama Varo', tag: 'Waxaad haysataa SSN', req: 'Wuxuu u baahan yahay Lambarka Bulshada, ee maaha ITIN.', pros: ['Kharash bishii ma jiro', 'Akoonku wuxuu furmaa qiyaastii 10 maalmood oo shaqo', 'Abka fudud ee mobile-ka ku salaysan'], cons: ['Ma aha ikhtiyaar la\'aanteed SSN', 'Ma jiraan laamo dhab ah haddii aad doorbidayso caawimaad shakhsi ah'] },
+    bankCU: { name: 'Urur deyn (credit union) maxalli ah', tag: 'Labada dhinacba u dabacsan', req: 'Badanaa waxay aqbashaa aqoonsi konsulari ah sida Matrícula Consular oo ay la socoto ITIN ama SSN.', pros: ['Kharashyo ka yar bangiyada waaweyn', 'Adeeg shakhsi ah oo badanaa luuqado badan ku hadla', 'Mararka qaarkood ka dabacsan dukumeentiga'], cons: ['Shabakad ATM oo yar', 'Qalab dijitaal ah oo ka yar sida bangi weyn'] },
+    cardCapOne: { name: 'Capital One Quicksilver Secured', tag: 'ITIN waa la aqbalaa', req: 'Waxay u baahan tahay ITIN iyo qasab lacag ah oo la soo celin karo (ugu yaraan $200).', pros: ['1.5% dib-u-celin lacageed iibsiga, kharash sannadle ma jiro', 'Wuxuu u warbixiyaa saddexda xafiis ee deynta', 'Dib-u-eegis otomaatig ah oo loogu talagalay horumarinta qiyaastii 6 bilood ka dib'], cons: ['Wuxuu u baahan yahay lacag caddaan ah oo hore loo bixiyo qasabka', 'Ansixintu waxay wali ku xirantahay xaqiijinta dakhliga'] },
+    cardOpenSky: { name: 'OpenSky Secured Visa', tag: 'SSN ama ITIN looma baahna', req: 'Aqoonsi sax ah oo keliya, SSN ama ITIN gabi ahaanba looma baahna.', pros: ['Waa mid ka mid ah kaararka dhawr ah ee aan u baahnayn SSN iyo ITIN toona', 'Wuxuu u warbixiyaa saddexda xafiis', 'Ikhtiyaar wanaagsan bilaha ugu horreeya'], cons: ['Kharash sannadle $35 ah, oo ka sareeya inta badan tartamayaasha', 'APR qiyaastii 20%, sidaa darteed bixinta baaqiga oo dhammaystiran aad ayay muhiim u tahay'] },
+    cardFirstcard: { name: 'Firstcard', tag: 'SSN ama ITIN looma baahna', req: 'Waxay isticmaashaa baasaboor iyo dukumeenti fiisaha halkii ay ka isticmaali lahayd SSN ama ITIN.', pros: ['Gaar ahaan loogu sameeyay dadka cusub ee deynta Maraykanka', 'Uma baahna taariikh deyn si loo codsado', 'Wuxuu u warbixiyaa saddexda xafiis'], cons: ['Waa alaab fintech ah oo cusub, ee maaha bangi dhaqameed ah', 'Aqoonsi sumad ka yar sida kaararka bangiyada'] },
+    cardDeserve: { name: 'Deserve (adigoo isticmaalaya Nova Credit)', tag: 'Waxaad haysataa taariikh deyn oo dibadda ah', req: 'Codsadayaasha leh taariikh deyn oo jirta oo ku taal Hindiya, Boqortooyada Midowday, Kanada, iyo dhowr waddan oo kale.', pros: ['Waxaad heli kartaa kaar aan damaanad lahayn (unsecured) isla markiiba, qasab ma jiro', 'Waxay aqoonsataa taariikhda deynta ee aad horeba u dhistay dibadda'], cons: ['Wuxuu shaqeeyaa kaliya haddii dalkaaga la taageero', 'Faa\'iido ma leh haddii aadan lahayn taariikh deyn oo hore meel kasta'] }
+  }
+}
+};
+
+function t(key) { return (I18N[selectedLang] && I18N[selectedLang][key] !== undefined) ? I18N[selectedLang][key] : I18N.en[key]; }
+
+function renderLangStrip() {
+  const strip = document.getElementById('langStrip');
+  strip.innerHTML = LANGUAGES.map(l =>
+    '<button class="lang-pill' + (l.code === selectedLang ? ' selected' : '') + '" onclick="pickLang(\'' + l.code + '\')">' + l.label + '</button>'
+  ).join('');
+  document.getElementById('langNote').textContent = '';
+}
+function pickLang(lang) {
+  selectedLang = lang;
+  document.documentElement.dir = RTL_LANGS.includes(lang) ? 'rtl' : 'ltr';
+  renderLangStrip();
+  applyStaticText();
+  const savedState = loadState();
+  if (savedState && savedState.phaseKeys) render(savedState);
+  updateFilterNote();
+  renderProducts(BANKS, 'banksOut');
+  renderProducts(CARDS, 'cardsOut');
+}
+function applyStaticText() {
+  document.querySelector('header.hero h1').textContent = t('heroTitle');
+  document.querySelector('header.hero .hero-sub').textContent = t('heroSub');
+  document.querySelector('.lang-picker-label').textContent = t('langPickerLabel');
+  document.getElementById('eduToggle').querySelector('span').textContent = t('eduTitle');
+  const eduBody = document.getElementById('eduBody');
+  eduBody.innerHTML = t('eduBody').map(function(pair) {
+    return '<p><strong>' + pair[0] + '</strong> ' + pair[1] + '</p>';
+  }).join('').replace(t('eduLinkText'), '<a href="https://www.annualcreditreport.com" target="_blank" rel="noopener">' + t('eduLinkText') + '</a>');
+  document.querySelector('[data-q="ssn"]').previousElementSibling.textContent = t('q1');
+  const ssnOpts = document.querySelectorAll('[data-q="ssn"] .option');
+  ssnOpts[0].lastChild.textContent = ' ' + t('q1a'); ssnOpts[1].lastChild.textContent = ' ' + t('q1b'); ssnOpts[2].lastChild.textContent = ' ' + t('q1c');
+  document.querySelector('[data-q="history"]').previousElementSibling.textContent = t('q2');
+  const histOpts = document.querySelectorAll('[data-q="history"] .option');
+  histOpts[0].lastChild.textContent = ' ' + t('q2a'); histOpts[1].lastChild.textContent = ' ' + t('q2b'); histOpts[2].lastChild.textContent = ' ' + t('q2c');
+  document.querySelector('[data-q="bank"]').previousElementSibling.textContent = t('q3');
+  const bankOpts = document.querySelectorAll('[data-q="bank"] .option');
+  bankOpts[0].lastChild.textContent = ' ' + t('q3a'); bankOpts[1].lastChild.textContent = ' ' + t('q3b');
+  document.querySelector('[data-q="goal"]').previousElementSibling.textContent = t('q4');
+  const goalOpts = document.querySelectorAll('[data-q="goal"] .option');
+  goalOpts[0].lastChild.textContent = ' ' + t('q4a'); goalOpts[1].lastChild.textContent = ' ' + t('q4b'); goalOpts[2].lastChild.textContent = ' ' + t('q4c'); goalOpts[3].lastChild.textContent = ' ' + t('q4d');
+  document.getElementById('startBtn').textContent = t('startBtn');
+  document.getElementById('intakeError').textContent = t('intakeError');
+  document.querySelector('#planView .section-title').textContent = t('planTitle');
+  document.querySelectorAll('#planView .section-title')[1].textContent = t('simTitle');
+  const simRows = document.querySelectorAll('.sim-row span');
+  simRows[0].textContent = t('simOntime'); simRows[1].textContent = t('simUtil'); simRows[2].textContent = t('simAge');
+  document.querySelector('.sim-result .cap').textContent = t('simCaption');
+  document.querySelectorAll('#planView .section-title')[2].textContent = t('productsTitle');
+  document.getElementById('tab-banks').textContent = t('tabBanks');
+  document.getElementById('tab-cards').textContent = t('tabCards');
+  document.querySelector('.disclaimer').textContent = t('disclaimer');
+  document.getElementById('resetBtn').textContent = t('startOver');
+  document.getElementById('privacyToggle').textContent = t('footerPrivacy');
+  document.getElementById('a11yToggle').textContent = t('footerA11y');
+  document.getElementById('privacyHeading').textContent = t('privacyHeading');
+  document.getElementById('a11yHeading').textContent = t('a11yHeading');
+  document.getElementById('privacyP1').textContent = t('privacyP1');
+  document.getElementById('privacyP2').textContent = t('privacyP2');
+  document.getElementById('privacyP3').textContent = t('privacyP3');
+  document.getElementById('a11yP1').textContent = t('a11yP1');
+  document.getElementById('a11yP2').textContent = t('a11yP2');
+  document.getElementById('a11yP3').textContent = t('a11yP3');
+}
+function toggleEdu() {
+  const body = document.getElementById('eduBody');
+  const chev = document.getElementById('eduChevron');
+  body.classList.toggle('hidden');
+  chev.classList.toggle('open');
+}
+function toggleFooterPanel(which) {
+  const privacy = document.getElementById('privacyPanel');
+  const a11y = document.getElementById('accessibilityPanel');
+  if (which === 'privacy') {
+    privacy.classList.toggle('hidden');
+    a11y.classList.add('hidden');
+  } else {
+    a11y.classList.toggle('hidden');
+    privacy.classList.add('hidden');
+  }
+}
+renderLangStrip();
+
+const STORAGE_KEY = 'creditpath_state_v1';
+
+function saveState(state) {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch (e) {}
+}
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch (e) { return null; }
+}
+
+document.querySelectorAll('.options').forEach(group => {
+  group.addEventListener('change', () => {
+    group.querySelectorAll('.option').forEach(opt => {
+      opt.classList.toggle('selected', opt.querySelector('input').checked);
+    });
+  });
+});
+
+function tk(key) {
+  const langTasks = (I18N[selectedLang] && I18N[selectedLang].tasks) ? I18N[selectedLang].tasks : I18N.en.tasks;
+  return langTasks[key] || I18N.en.tasks[key];
+}
+
+function computeStartingPhase(answers) {
+  // 0 = foundation, 1 = build habit, 2 = grow, 3 = ongoing
+  const hasBankAndId = (answers.ssn === 'yes') && (answers.bank === 'yes');
+  if (answers.history === 'established') return 2;
+  if (answers.history === 'some') return 1;
+  if (hasBankAndId) return 0;
+  return 0;
+}
+
+function buildTasks(answers) {
+  const phases = [];
+
+  const startKeys = [];
+  if (answers.ssn === 'no' || answers.ssn === 'unsure') startKeys.push('itin');
+  if (answers.bank === 'no') startKeys.push('openBank');
+  startKeys.push('securedCard');
+  startKeys.push('autopay');
+  phases.push({ titleKey: 'phase1', taskKeys: startKeys });
+
+  const buildKeys = ['smallPurchases', 'payFull', 'checkReport'];
+  if (answers.history === 'none') buildKeys.push('authorizedUser');
+  phases.push({ titleKey: 'phase2', taskKeys: buildKeys });
+
+  const growKeys = ['upgradeCard', 'secondAccount'];
+  if (answers.goal === 'car') growKeys.push('carRates');
+  if (answers.goal === 'house') growKeys.push('mortgageRange');
+  if (answers.goal === 'rent') growKeys.push('rentReporting');
+  phases.push({ titleKey: 'phase3', taskKeys: growKeys });
+
+  phases.push({ titleKey: 'phase4', taskKeys: ['utilization', 'avoidApps', 'yearlyCheck'] });
+
+  return phases;
+}
+function resolvePhases(phaseKeys) {
+  return phaseKeys.map(function(p) {
+    return {
+      title: tk(p.titleKey),
+      tasks: p.taskKeys.map(function(k) { return tk(k); })
+    };
+  });
+}
+
+function buildPlan() {
+  const ssn = document.querySelector('input[name="ssn"]:checked');
+  const history = document.querySelector('input[name="history"]:checked');
+  const bank = document.querySelector('input[name="bank"]:checked');
+  const goal = document.querySelector('input[name="goal"]:checked');
+
+  if (!ssn || !history || !bank || !goal) {
+    document.getElementById('intakeError').classList.remove('hidden');
+    return;
+  }
+  document.getElementById('intakeError').classList.add('hidden');
+
+  const answers = { ssn: ssn.value, history: history.value, bank: bank.value, goal: goal.value };
+  const phaseKeys = buildTasks(answers);
+  const startingPhase = computeStartingPhase(answers);
+
+  const taskState = {};
+  phaseKeys.forEach((phase, pi) => {
+    phase.taskKeys.forEach((k, ti) => {
+      taskState[pi + '-' + ti] = pi < startingPhase;
+    });
+  });
+
+  const state = { answers, phaseKeys, taskState, startingPhase };
+  saveState(state);
+  render(state);
+  updateFilterNote();
+}
+
+function render(state) {
+  document.getElementById('intake').classList.add('hidden');
+  document.getElementById('planView').classList.remove('hidden');
+  document.getElementById('resetBtn').classList.remove('hidden');
+
+  const out = document.getElementById('timelineOut');
+  out.innerHTML = '';
+  const phases = resolvePhases(state.phaseKeys);
+  const startingPhase = state.startingPhase || 0;
+  phases.forEach((phase, pi) => {
+    const phaseEl = document.createElement('div');
+    phaseEl.className = 'phase';
+    const title = document.createElement('p');
+    title.className = 'phase-title';
+    title.textContent = phase.title;
+    if (pi === startingPhase) {
+      const badge = document.createElement('span');
+      badge.className = 'here-badge';
+      badge.textContent = t('youAreHere');
+      title.appendChild(badge);
+    }
+    phaseEl.appendChild(title);
+
+    phase.tasks.forEach((t, ti) => {
+      const key = pi + '-' + ti;
+      const row = document.createElement('div');
+      row.className = 'task';
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.checked = !!state.taskState[key];
+      cb.addEventListener('change', () => {
+        state.taskState[key] = cb.checked;
+        saveState(state);
+        updateProgress(state);
+        textEl.classList.toggle('done', cb.checked);
+      });
+      const textWrap = document.createElement('div');
+      const textEl = document.createElement('div');
+      textEl.className = 'task-text' + (state.taskState[key] ? ' done' : '');
+      textEl.textContent = t.text;
+      const whyEl = document.createElement('div');
+      whyEl.className = 'task-why';
+      whyEl.textContent = t.why;
+      textWrap.appendChild(textEl);
+      textWrap.appendChild(whyEl);
+      row.appendChild(cb);
+      row.appendChild(textWrap);
+      phaseEl.appendChild(row);
+    });
+    out.appendChild(phaseEl);
+  });
+
+  const goalIconMap = { car: 'key-car', house: 'key-house', rent: 'key-house', general: 'flag' };
+  const goalLabelKey = { car: 'goalCar', house: 'goalHouse', rent: 'goalRent', general: 'goalGeneral' };
+  const gIcon = goalIconMap[state.answers.goal] || 'flag';
+  const gLabel = t(goalLabelKey[state.answers.goal] || 'goalGeneral');
+  const goalEl = document.createElement('div');
+  goalEl.className = 'goal-marker';
+  goalEl.innerHTML = '<span class="goal-icon">' + GOAL_ICONS[gIcon] + '</span><span class="goal-label">' + gLabel + '</span>';
+  out.appendChild(goalEl);
+
+  updateProgress(state);
+  drawSim();
+}
+
+function updateProgress(state) {
+  const keys = Object.keys(state.taskState);
+  const done = keys.filter(k => state.taskState[k]).length;
+  const pct = keys.length ? Math.round((done / keys.length) * 100) : 0;
+  document.getElementById('progressFill').style.width = pct + '%';
+  document.getElementById('progressLabel').textContent = done + ' of ' + keys.length + ' done';
+}
+
+function resetAll() {
+  localStorage.removeItem(STORAGE_KEY);
+  document.getElementById('planView').classList.add('hidden');
+  document.getElementById('resetBtn').classList.add('hidden');
+  document.getElementById('intake').classList.remove('hidden');
+  document.querySelectorAll('input[type="radio"]').forEach(r => r.checked = false);
+  document.querySelectorAll('.option').forEach(o => o.classList.remove('selected'));
+}
+
+// Simulator
+const simState = { ontime: true, util: true, age: true };
+function toggleSim(key) {
+  simState[key] = !simState[key];
+  document.getElementById('tog-' + key).classList.toggle('on', simState[key]);
+  drawSim();
+}
+function computeTrajectory() {
+  let score = 640;
+  const points = [score];
+  for (let m = 1; m <= 12; m++) {
+    let delta = 3;
+    delta += simState.ontime ? 6 : -18;
+    delta += simState.util ? 3 : -8;
+    delta += simState.age ? 1 : -4;
+    score = Math.max(300, Math.min(850, score + delta));
+    points.push(Math.round(score));
+  }
+  return points;
+}
+function drawSim() {
+  const points = computeTrajectory();
+  document.getElementById('simScore').textContent = points[points.length - 1];
+  const svg = document.getElementById('simchart');
+  const w = 560, h = 140, pad = 20;
+  const min = 550, max = 800;
+  const stepX = (w - pad * 2) / (points.length - 1);
+  const coords = points.map((p, i) => {
+    const x = pad + i * stepX;
+    const y = h - pad - ((p - min) / (max - min)) * (h - pad * 2);
+    return [x, y];
+  });
+  const pathD = coords.map((c, i) => (i === 0 ? 'M' : 'L') + c[0].toFixed(1) + ' ' + c[1].toFixed(1)).join(' ');
+  const accentColor = getComputedStyle(document.documentElement).getPropertyValue('--accent').trim() || '#2f6b52';
+  const lineColor = getComputedStyle(document.documentElement).getPropertyValue('--line').trim() || '#e3ddd0';
+  svg.innerHTML =
+    '<line x1="' + pad + '" y1="' + (h - pad) + '" x2="' + (w - pad) + '" y2="' + (h - pad) + '" stroke="' + lineColor + '" stroke-width="1"/>' +
+    '<path d="' + pathD + '" fill="none" stroke="' + accentColor + '" stroke-width="2.5"/>' +
+    '<circle cx="' + coords[coords.length - 1][0] + '" cy="' + coords[coords.length - 1][1] + '" r="4" fill="' + accentColor + '"/>';
+}
+
+// Banks and cards
+const BANKS = [
+  { key: 'bankMajor', needsITIN: true, icon: 'bank', url: 'https://www.chase.com' },
+  { key: 'bankNeo', needsITIN: false, icon: 'phone-bank', url: 'https://www.chime.com' },
+  { key: 'bankCU', needsITIN: null, icon: 'bank', url: 'https://www.mycreditunion.gov/about-credit-unions/find-credit-union' }
+];
+
+const CARDS = [
+  { key: 'cardCapOne', needsITIN: true, icon: 'card', url: 'https://www.capitalone.com/credit-cards/secured-quicksilver/' },
+  { key: 'cardOpenSky', needsITIN: false, icon: 'card', url: 'https://www.openskycc.com' },
+  { key: 'cardFirstcard', needsITIN: false, icon: 'card', url: 'https://www.firstcard.app' },
+  { key: 'cardDeserve', needsITIN: null, icon: 'card', url: 'https://www.novacredit.com' }
+];
+
+const GOAL_ICONS = {
+  'key-car': '<svg viewBox="0 0 40 40" width="30" height="30"><circle cx="12" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="20" r="2.5" fill="currentColor"/><line x1="19" y1="20" x2="36" y2="20" stroke="currentColor" stroke-width="2"/><line x1="28" y1="20" x2="28" y2="26" stroke="currentColor" stroke-width="2"/><line x1="33" y1="20" x2="33" y2="25" stroke="currentColor" stroke-width="2"/></svg>',
+  'key-house': '<svg viewBox="0 0 40 40" width="30" height="30"><circle cx="12" cy="20" r="8" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="20" r="2.5" fill="currentColor"/><line x1="19" y1="20" x2="34" y2="20" stroke="currentColor" stroke-width="2"/><polyline points="27,20 27,15 34,15 34,20" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>',
+  flag: '<svg viewBox="0 0 40 40" width="30" height="30"><line x1="10" y1="6" x2="10" y2="34" stroke="currentColor" stroke-width="2"/><path d="M10 8 L30 8 L24 15 L30 22 L10 22 Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>'
+};
+
+const ICONS = {
+  bank: '<svg viewBox="0 0 40 40" width="34" height="34"><rect x="6" y="17" width="28" height="14" fill="none" stroke="currentColor" stroke-width="2"/><line x1="4" y1="31" x2="36" y2="31" stroke="currentColor" stroke-width="2"/><polygon points="20,6 35,15 5,15" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><line x1="11" y1="17" x2="11" y2="31" stroke="currentColor" stroke-width="2"/><line x1="20" y1="17" x2="20" y2="31" stroke="currentColor" stroke-width="2"/><line x1="29" y1="17" x2="29" y2="31" stroke="currentColor" stroke-width="2"/></svg>',
+  'phone-bank': '<svg viewBox="0 0 40 40" width="34" height="34"><rect x="11" y="5" width="18" height="30" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="11" y1="10" x2="29" y2="10" stroke="currentColor" stroke-width="2"/><line x1="11" y1="30" x2="29" y2="30" stroke="currentColor" stroke-width="2"/><circle cx="20" cy="32.5" r="1.4" fill="currentColor"/><text x="20" y="22" font-size="9" text-anchor="middle" fill="currentColor" font-family="sans-serif">$</text></svg>',
+  card: '<svg viewBox="0 0 40 40" width="34" height="34"><rect x="4" y="11" width="32" height="20" rx="3" fill="none" stroke="currentColor" stroke-width="2"/><line x1="4" y1="17" x2="36" y2="17" stroke="currentColor" stroke-width="2"/><line x1="9" y1="25" x2="19" y2="25" stroke="currentColor" stroke-width="2"/></svg>'
+};
+
+function productCard(p) {
+  const langProducts = (I18N[selectedLang] && I18N[selectedLang].products) ? I18N[selectedLang].products : I18N.en.products;
+  const d = langProducts[p.key] || I18N.en.products[p.key];
+  return '<div class="product-card">' +
+    '<div class="product-head">' +
+      '<div class="product-title-row"><span class="product-icon">' + ICONS[p.icon] + '</span>' +
+      '<span class="product-name">' + d.name + '</span></div>' +
+      '<span class="product-tag">' + d.tag + '</span>' +
+    '</div>' +
+    '<p class="product-req">' + d.req + '</p>' +
+    '<div class="pc-grid">' +
+      '<div class="pc-col pro"><p>' + t('prosLabel') + '</p><ul>' + d.pros.map(x => '<li>' + x + '</li>').join('') + '</ul></div>' +
+      '<div class="pc-col con"><p>' + t('consLabel') + '</p><ul>' + d.cons.map(x => '<li>' + x + '</li>').join('') + '</ul></div>' +
+    '</div>' +
+    '<a class="product-link" href="' + p.url + '" target="_blank" rel="noopener">' + t('visitSite') + ' &#8594;</a>' +
+    '</div>';
+}
+
+function renderProducts(list, elId) {
+  document.getElementById(elId).innerHTML = list.map(productCard).join('');
+}
+
+function currentITINStatus() {
+  const saved = loadState();
+  if (!saved || !saved.answers) return null;
+  if (saved.answers.ssn === 'yes') return 'has';
+  if (saved.answers.ssn === 'no' || saved.answers.ssn === 'unsure') return 'none';
+  return null;
+}
+
+function updateFilterNote() {
+  const status = currentITINStatus();
+  const note = document.getElementById('filterNote');
+  if (status === 'has') {
+    note.textContent = t('filterHas');
+  } else if (status === 'none') {
+    note.textContent = t('filterNone');
+  } else {
+    note.textContent = t('filterUnknown');
+  }
+}
+
+function switchTab(tab) {
+  document.getElementById('tab-banks').classList.toggle('active', tab === 'banks');
+  document.getElementById('tab-cards').classList.toggle('active', tab === 'cards');
+  document.getElementById('banksOut').classList.toggle('hidden', tab !== 'banks');
+  document.getElementById('cardsOut').classList.toggle('hidden', tab !== 'cards');
+}
+
+renderProducts(BANKS, 'banksOut');
+renderProducts(CARDS, 'cardsOut');
+updateFilterNote();
+
+// Restore saved state on load
+(function init() {
+  applyStaticText();
+  const saved = loadState();
+  if (saved && saved.phaseKeys) {
+    render(saved);
+  }
+  updateFilterNote();
+})();
+</script>
+</body>
+</html>
